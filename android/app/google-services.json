@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "938273869324",
+    "project_id": "sangeet-b4b33",
+    "storage_bucket": "sangeet-b4b33.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:938273869324:android:b1484d29d2195f7217a829",
+        "android_client_info": {
+          "package_name": "com.suman.sangeet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "938273869324-377u8t75nvv13js3socvvkgs6991t8eb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqmOnu4x4B1c6Ff-RDF8doDdaUp9zySxA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "938273869324-377u8t75nvv13js3socvvkgs6991t8eb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "938273869324-gcbmdo8pnfjpm05o7d1mojilmh6jt260.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.suman.sangeet"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
