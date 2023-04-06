@@ -1020,11 +1020,11 @@ class _SettingPageState extends State<SettingPage>
                                         : selectedTheme['cardColor'] as String;
 
                                     themeColor = themeChoice == deflt
-                                        ? 'Teal'
+                                        ? 'Blue'
                                         : selectedTheme['accentColor']
                                             as String;
                                     colorHue = themeChoice == deflt
-                                        ? 400
+                                        ? 200
                                         : selectedTheme['colorHue'] as int;
 
                                     currentTheme.switchColor(
