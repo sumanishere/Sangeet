@@ -21,7 +21,7 @@ class SangeetMusicWidget : AppWidgetProvider() {
 internal fun updateAppWidget(context: Context, appWidgetManager: AppWidgetManager, appWidgetId: Int) {
     val widgetText = context.getString(R.string.appwidget_text)
     // Construct the RemoteViews object
-    val views = RemoteViews(context.packageName, R.layout.black_hole_music_widget)
+    val views = RemoteViews(context.packageName, R.layout.sangeet_music_widget)
 
     // val intent = Intent(context, MainActivity::class.java);
     val intent = Intent(Intent.ACTION_VIEW, Uri.parse("app://sangeet/play"))
