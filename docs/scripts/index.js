@@ -29,8 +29,8 @@ const app = initializeApp(firebaseConfig);
   (window, document, "clarity", "script", "fpik2gr3m6");
 
 
-const repo = 'Sangwan5688/BlackHole';
-const endpoint = `https://api.github.com/repos/${repo}/releases`;
+const repo = 'sumanishere/Sangeet';
+const endpoint = `https://api.github.com/repos/${repo}`;
 let downloadsCount = 0;
 
 // Smooth scroll for links with hashes
