@@ -2,6 +2,19 @@ import 'dart:convert';
 
 import 'package:audiotagger/audiotagger.dart';
 import 'package:audiotagger/models/tag.dart';
+import 'package:flutter_lyric/lyric_helper.dart';
+import 'package:flutter_lyric/lyric_parser/lyrics_parse.dart';
+import 'package:flutter_lyric/lyric_parser/parser_lrc.dart';
+import 'package:flutter_lyric/lyric_parser/parser_qrc.dart';
+import 'package:flutter_lyric/lyric_parser/parser_smart.dart';
+import 'package:flutter_lyric/lyric_ui/lyric_ui.dart';
+import 'package:flutter_lyric/lyric_ui/ui_netease.dart';
+import 'package:flutter_lyric/lyrics_log.dart';
+import 'package:flutter_lyric/lyrics_model_builder.dart';
+import 'package:flutter_lyric/lyrics_reader.dart';
+import 'package:flutter_lyric/lyrics_reader_model.dart';
+import 'package:flutter_lyric/lyrics_reader_paint.dart';
+import 'package:flutter_lyric/lyrics_reader_widget.dart';
 import 'package:http/http.dart';
 
 // ignore: avoid_classes_with_only_static_members
