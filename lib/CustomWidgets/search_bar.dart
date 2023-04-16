@@ -8,6 +8,9 @@ import 'package:hive/hive.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:material_design_icons_flutter/icon_map.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:implicitly_animated_reorderable_list/implicitly_animated_reorderable_list.dart';
+import 'package:implicitly_animated_reorderable_list/transitions.dart';
+import 'package:provider/provider.dart';
 
 class SearchBar extends StatefulWidget {
   final bool isYt;
@@ -40,7 +43,6 @@ class SearchBar extends StatefulWidget {
   State<SearchBar> createState() => _SearchBarState();
 }
 
-AppBar _searchBar(BuildContext context)
 class _SearchBarState extends State<SearchBar> {
   String tempQuery = '';
   String query = '';
@@ -49,263 +51,323 @@ class _SearchBarState extends State<SearchBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        widget.body,
-        ValueListenableBuilder(
-          valueListenable: hide,
-          builder: (
-            BuildContext context,
-            bool hidden,
-            Widget? child,
-          ) {
-            return Visibility(
-              visible: !hidden,
-              child: GestureDetector(
-                onTap: () {
-                  hide.value = true;
-                },
-              ),
-            );
-          },
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      drawer: Drawer(
+        child: Container(
+          width: 200,
         ),
-        Column(
-          children: [
-            Card(
-              margin: const EdgeInsets.fromLTRB(
-                18.0,
-                10.0,
-                18.0,
-                15.0,
-              ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(
-                  10.0,
-                ),
-              ),
-              elevation: 8.0,
-              child: SizedBox(
-                height: 52.0,
-                child: Center(
-                  child: TextField(
-                    controller: widget.controller,
-                    textAlignVertical: TextAlignVertical.center,
-                    decoration: InputDecoration(
-                      focusedBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          width: 1.5,
-                          color: Colors.transparent,
-                        ),
-                      ),
-                      fillColor: Theme.of(context).colorScheme.secondary,
-                      prefixIcon: widget.leading,
-                      suffixIcon: widget.showClose
-                          ? ValueListenableBuilder(
-                              valueListenable: hide,
-                              builder: (
-                                BuildContext context,
-                                bool hidden,
-                                Widget? child,
-                              ) {
-                                return Visibility(
-                                  visible: !hidden,
-                                  child: IconButton(
-                                    icon: const Icon(Icons.close_rounded),
-                                    onPressed: () {
-                                      widget.controller.text = '';
-                                      suggestionsList.value = [];
-                                      if (widget.onQueryCleared != null) {
-                                        widget.onQueryCleared!.call();
-                                      }
-                                    },
-                                  ),
-                                );
-                              },
-                            )
-                          : null,
-                      border: InputBorder.none,
-                      hintText: widget.hintText,
-                    ),
-                    autofocus: widget.autofocus,
-                    keyboardType: TextInputType.text,
-                    textInputAction: TextInputAction.search,
-                    onChanged: (val) {
-                      if (widget.liveSearch) {
-                        tempQuery = val;
-                        hide.value = false;
-                        if (widget.isYt) {
-                          Future.delayed(
-                            const Duration(
-                              milliseconds: 600,
-                            ),
-                            () async {
-                              if (tempQuery == val &&
-                                  tempQuery.trim() != '' &&
-                                  tempQuery != query) {
-                                query = tempQuery;
-                                suggestionsList.value =
-                                    await widget.onQueryChanged!(tempQuery)
-                                        as List;
-                              }
-                            },
-                          );
-                        } else {
-                          Future.delayed(
-                            const Duration(
-                              milliseconds: 600,
-                            ),
-                            () async {
-                              if (tempQuery == val &&
-                                  tempQuery.trim() != '' &&
-                                  tempQuery != query) {
-                                query = tempQuery;
-                                if (widget.onQueryChanged == null) {
-                                  widget.onSubmitted(tempQuery);
-                                } else {
-                                  widget.onQueryChanged!(tempQuery);
-                                }
-                              }
-                            },
-                          );
-                        }
-                      }
-                    },
-                    onSubmitted: (submittedQuery) {
-                      if (submittedQuery.trim() != '') {
-                        query = submittedQuery;
-                        widget.onSubmitted(submittedQuery);
-                        if (!hide.value) hide.value = true;
-                        List searchQueries = Hive.box('settings')
-                            .get('search', defaultValue: []) as List;
-                        searchQueries.insert(0, query);
-                        if (searchQueries.length > 10) {
-                          searchQueries = searchQueries.sublist(0, 10);
-                        }
-                        Hive.box('settings').put('search', searchQueries);
-                      }
-                    },
-                  ),
-                ),
-              ),
-            ),
-            if (!widget.isYt)
-              Padding(
-                padding: const EdgeInsets.only(left: 25.0, right: 25.0),
-                child: RichText(
-                  text: TextSpan(
-                    children: <TextSpan>[
-                      TextSpan(
-                        style: const TextStyle(color: Colors.grey),
-                        text: AppLocalizations.of(context)!.cantFind,
-                      ),
-                      TextSpan(
-                        text: AppLocalizations.of(context)!.searchYt,
-                        style: TextStyle(
-                          color: Theme.of(context).textTheme.bodyLarge!.color,
-                        ),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            Navigator.push(
-                              context,
-                              PageRouteBuilder(
-                                opaque: false,
-                                pageBuilder: (_, __, ___) => YouTubeSearchPage(
-                                  query: query.isNotEmpty
-                                      ? query
-                                      : widget.controller.text,
-                                ),
-                              ),
-                            );
-                          },
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ValueListenableBuilder(
-              valueListenable: hide,
-              builder: (
-                BuildContext context,
-                bool hidden,
-                Widget? child,
-              ) {
-                return Visibility(
-                  visible: !hidden,
-                  child: ValueListenableBuilder(
-                    valueListenable: suggestionsList,
-                    builder: (
-                      BuildContext context,
-                      List suggestedList,
-                      Widget? child,
-                    ) {
-                      return suggestedList.isEmpty
-                          ? const SizedBox()
-                          : Card(
-                              margin: const EdgeInsets.symmetric(
-                                horizontal: 18.0,
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                  10.0,
-                                ),
-                              ),
-                              elevation: 8.0,
-                              child: SizedBox(
-                                height: min(
-                                  MediaQuery.of(context).size.height / 1.75,
-                                  70.0 * suggestedList.length,
-                                ),
-                                child: ListView.builder(
-                                  physics: const BouncingScrollPhysics(),
-                                  padding: const EdgeInsets.only(
-                                    top: 10,
-                                    bottom: 10,
-                                  ),
-                                  shrinkWrap: true,
-                                  itemExtent: 70.0,
-                                  itemCount: suggestedList.length,
-                                  itemBuilder: (context, index) {
-                                    return ListTile(
-                                      leading:
-                                          const Icon(CupertinoIcons.search),
-                                      title: Text(
-                                        suggestedList[index].toString(),
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                      onTap: () {
-                                        widget.onSubmitted(
-                                          suggestedList[index].toString(),
-                                        );
-                                        hide.value = true;
-                                        List searchQueries =
-                                            Hive.box('settings').get(
-                                          'search',
-                                          defaultValue: [],
-                                        ) as List;
-                                        searchQueries.insert(
-                                          0,
-                                          suggestedList[index].toString(),
-                                        );
-                                        if (searchQueries.length > 10) {
-                                          searchQueries =
-                                              searchQueries.sublist(0, 10);
-                                        }
-                                        Hive.box('settings')
-                                            .put('search', searchQueries);
-                                      },
-                                    );
-                                  },
-                                ),
-                              ),
-                            );
-                    },
-                  ),
-                );
-              },
-            ),
-          ],
-        ),
-      ],
+      ),
+      body: buildSearchBar(),
     );
   }
+
+  Widget buildSearchBar() {
+    final actions = [
+      FloatingSearchBarAction(
+        showIfOpened: false,
+        child: CircularButton(
+          icon: const Icon(CupertinoIcons.search),
+          onPressed: () {},
+        ),
+      ),
+      FloatingSearchBarAction.searchToClear(
+        showIfClosed: false,
+      ),
+    ];
+
+    final isPortrait =
+        MediaQuery.of(context).orientation == Orientation.portrait;
+
+    return Consumer<SearchModel>(
+      builder: (context, model, _) => FloatingSearchBar(
+        automaticallyImplyBackButton: false,
+        controller: controller,
+        clearQueryOnClose: true,
+        hint: 'חיפוש...',
+        iconColor: Colors.grey,
+        transitionDuration: const Duration(milliseconds: 800),
+        transitionCurve: Curves.easeInOutCubic,
+        physics: const BouncingScrollPhysics(),
+        axisAlignment: isPortrait ? 0.0 : -1.0,
+        openAxisAlignment: 0.0,
+        actions: actions,
+        progress: model.isLoading,
+        debounceDelay: const Duration(milliseconds: 500),
+        onQueryChanged: model.onQueryChanged,
+        onKeyEvent: (KeyEvent keyEvent) {
+          if (keyEvent.logicalKey == LogicalKeyboardKey.escape) {
+            controller.query = "";
+            controller.close();
+          }
+        },
+        scrollPadding: EdgeInsets.zero,
+        transition: CircularFloatingSearchBarTransition(spacing: 16),
+        builder: (context, _) => buildExpandableBody(model),
+        body: buildBody(),
+      ),
+    );
+  }
+
+  // @override
+  // Widget build(BuildContext context) {
+  //   return Stack(
+  //     children: [
+  //       widget.body,
+  //       ValueListenableBuilder(
+  //         valueListenable: hide,
+  //         builder: (
+  //           BuildContext context,
+  //           bool hidden,
+  //           Widget? child,
+  //         ) {
+  //           return Visibility(
+  //             visible: !hidden,
+  //             child: GestureDetector(
+  //               onTap: () {
+  //                 hide.value = true;
+  //               },
+  //             ),
+  //           );
+  //         },
+  //       ),
+  //       Column(
+  //         children: [
+  //           Card(
+  //             margin: const EdgeInsets.fromLTRB(
+  //               18.0,
+  //               10.0,
+  //               18.0,
+  //               15.0,
+  //             ),
+  //             shape: RoundedRectangleBorder(
+  //               borderRadius: BorderRadius.circular(
+  //                 10.0,
+  //               ),
+  //             ),
+  //             elevation: 8.0,
+  //             child: SizedBox(
+  //               height: 52.0,
+  //               child: Center(
+  //                 child: TextField(
+  //                   controller: widget.controller,
+  //                   textAlignVertical: TextAlignVertical.center,
+  //                   decoration: InputDecoration(
+  //                     focusedBorder: const UnderlineInputBorder(
+  //                       borderSide: BorderSide(
+  //                         width: 1.5,
+  //                         color: Colors.transparent,
+  //                       ),
+  //                     ),
+  //                     fillColor: Theme.of(context).colorScheme.secondary,
+  //                     prefixIcon: widget.leading,
+  //                     suffixIcon: widget.showClose
+  //                         ? ValueListenableBuilder(
+  //                             valueListenable: hide,
+  //                             builder: (
+  //                               BuildContext context,
+  //                               bool hidden,
+  //                               Widget? child,
+  //                             ) {
+  //                               return Visibility(
+  //                                 visible: !hidden,
+  //                                 child: IconButton(
+  //                                   icon: const Icon(Icons.close_rounded),
+  //                                   onPressed: () {
+  //                                     widget.controller.text = '';
+  //                                     suggestionsList.value = [];
+  //                                     if (widget.onQueryCleared != null) {
+  //                                       widget.onQueryCleared!.call();
+  //                                     }
+  //                                   },
+  //                                 ),
+  //                               );
+  //                             },
+  //                           )
+  //                         : null,
+  //                     border: InputBorder.none,
+  //                     hintText: widget.hintText,
+  //                   ),
+  //                   autofocus: widget.autofocus,
+  //                   keyboardType: TextInputType.text,
+  //                   textInputAction: TextInputAction.search,
+  //                   onChanged: (val) {
+  //                     if (widget.liveSearch) {
+  //                       tempQuery = val;
+  //                       hide.value = false;
+  //                       if (widget.isYt) {
+  //                         Future.delayed(
+  //                           const Duration(
+  //                             milliseconds: 600,
+  //                           ),
+  //                           () async {
+  //                             if (tempQuery == val &&
+  //                                 tempQuery.trim() != '' &&
+  //                                 tempQuery != query) {
+  //                               query = tempQuery;
+  //                               suggestionsList.value =
+  //                                   await widget.onQueryChanged!(tempQuery)
+  //                                       as List;
+  //                             }
+  //                           },
+  //                         );
+  //                       } else {
+  //                         Future.delayed(
+  //                           const Duration(
+  //                             milliseconds: 600,
+  //                           ),
+  //                           () async {
+  //                             if (tempQuery == val &&
+  //                                 tempQuery.trim() != '' &&
+  //                                 tempQuery != query) {
+  //                               query = tempQuery;
+  //                               if (widget.onQueryChanged == null) {
+  //                                 widget.onSubmitted(tempQuery);
+  //                               } else {
+  //                                 widget.onQueryChanged!(tempQuery);
+  //                               }
+  //                             }
+  //                           },
+  //                         );
+  //                       }
+  //                     }
+  //                   },
+  //                   onSubmitted: (submittedQuery) {
+  //                     if (submittedQuery.trim() != '') {
+  //                       query = submittedQuery;
+  //                       widget.onSubmitted(submittedQuery);
+  //                       if (!hide.value) hide.value = true;
+  //                       List searchQueries = Hive.box('settings')
+  //                           .get('search', defaultValue: []) as List;
+  //                       searchQueries.insert(0, query);
+  //                       if (searchQueries.length > 10) {
+  //                         searchQueries = searchQueries.sublist(0, 10);
+  //                       }
+  //                       Hive.box('settings').put('search', searchQueries);
+  //                     }
+  //                   },
+  //                 ),
+  //               ),
+  //             ),
+  //           ),
+  //           if (!widget.isYt)
+  //             Padding(
+  //               padding: const EdgeInsets.only(left: 25.0, right: 25.0),
+  //               child: RichText(
+  //                 text: TextSpan(
+  //                   children: <TextSpan>[
+  //                     TextSpan(
+  //                       style: const TextStyle(color: Colors.grey),
+  //                       text: AppLocalizations.of(context)!.cantFind,
+  //                     ),
+  //                     TextSpan(
+  //                       text: AppLocalizations.of(context)!.searchYt,
+  //                       style: TextStyle(
+  //                         color: Theme.of(context).textTheme.bodyLarge!.color,
+  //                       ),
+  //                       recognizer: TapGestureRecognizer()
+  //                         ..onTap = () {
+  //                           Navigator.push(
+  //                             context,
+  //                             PageRouteBuilder(
+  //                               opaque: false,
+  //                               pageBuilder: (_, __, ___) => YouTubeSearchPage(
+  //                                 query: query.isNotEmpty
+  //                                     ? query
+  //                                     : widget.controller.text,
+  //                               ),
+  //                             ),
+  //                           );
+  //                         },
+  //                     ),
+  //                   ],
+  //                 ),
+  //               ),
+  //             ),
+  //           ValueListenableBuilder(
+  //             valueListenable: hide,
+  //             builder: (
+  //               BuildContext context,
+  //               bool hidden,
+  //               Widget? child,
+  //             ) {
+  //               return Visibility(
+  //                 visible: !hidden,
+  //                 child: ValueListenableBuilder(
+  //                   valueListenable: suggestionsList,
+  //                   builder: (
+  //                     BuildContext context,
+  //                     List suggestedList,
+  //                     Widget? child,
+  //                   ) {
+  //                     return suggestedList.isEmpty
+  //                         ? const SizedBox()
+  //                         : Card(
+  //                             margin: const EdgeInsets.symmetric(
+  //                               horizontal: 18.0,
+  //                             ),
+  //                             shape: RoundedRectangleBorder(
+  //                               borderRadius: BorderRadius.circular(
+  //                                 10.0,
+  //                               ),
+  //                             ),
+  //                             elevation: 8.0,
+  //                             child: SizedBox(
+  //                               height: min(
+  //                                 MediaQuery.of(context).size.height / 1.75,
+  //                                 70.0 * suggestedList.length,
+  //                               ),
+  //                               child: ListView.builder(
+  //                                 physics: const BouncingScrollPhysics(),
+  //                                 padding: const EdgeInsets.only(
+  //                                   top: 10,
+  //                                   bottom: 10,
+  //                                 ),
+  //                                 shrinkWrap: true,
+  //                                 itemExtent: 70.0,
+  //                                 itemCount: suggestedList.length,
+  //                                 itemBuilder: (context, index) {
+  //                                   return ListTile(
+  //                                     leading:
+  //                                         const Icon(CupertinoIcons.search),
+  //                                     title: Text(
+  //                                       suggestedList[index].toString(),
+  //                                       overflow: TextOverflow.ellipsis,
+  //                                     ),
+  //                                     onTap: () {
+  //                                       widget.onSubmitted(
+  //                                         suggestedList[index].toString(),
+  //                                       );
+  //                                       hide.value = true;
+  //                                       List searchQueries =
+  //                                           Hive.box('settings').get(
+  //                                         'search',
+  //                                         defaultValue: [],
+  //                                       ) as List;
+  //                                       searchQueries.insert(
+  //                                         0,
+  //                                         suggestedList[index].toString(),
+  //                                       );
+  //                                       if (searchQueries.length > 10) {
+  //                                         searchQueries =
+  //                                             searchQueries.sublist(0, 10);
+  //                                       }
+  //                                       Hive.box('settings')
+  //                                           .put('search', searchQueries);
+  //                                     },
+  //                                   );
+  //                                 },
+  //                               ),
+  //                             ),
+  //                           );
+  //                   },
+  //                 ),
+  //               );
+  //             },
+  //           ),
+  //         ],
+  //       ),
+  //     ],
+  //   );
+  // }
 }

@@ -56,6 +56,8 @@ dependencies:
   url_launcher: ^6.1.8
   uuid: ^3.0.7
   youtube_explode_dart: ^1.12.3
+  implicitly_animated_reorderable_list: ^0.4.2
+  provider: ^6.0.5
 
 dev_dependencies:
   flutter_test:
