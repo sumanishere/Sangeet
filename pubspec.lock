@@ -5,10 +5,26 @@ packages:
     dependency: "direct main"
     description:
       name: app_links
-      sha256: d572dcdff49c4cfcfa6f315e2683e518ec6eb54e084d01e51d9631a4dcc1b5e8
+      sha256: de064ea9dca1c590a414662caf65a48a32dbeb2d7a24365baa74f1ac84db2f1c
       url: "https://pub.dev"
     source: hosted
-    version: "3.4.2"
+    version: "2.2.2"
+  app_links_platform_interface:
+    dependency: transitive
+    description:
+      name: app_links_platform_interface
+      sha256: c05278fdefc19801263618e3053b6db6fc3a5e89a2ad461ed5963307c520adbb
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.0"
+  app_links_web:
+    dependency: transitive
+    description:
+      name: app_links_web
+      sha256: cfbda8443ff063d9596a6a15f6ac25e16e97d6f43afbb1ce68ce0526e091a050
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.0"
   archive:
     dependency: transitive
     description:
@@ -446,14 +462,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.15"
-  implicitly_animated_reorderable_list:
-    dependency: "direct main"
-    description:
-      name: implicitly_animated_reorderable_list
-      sha256: efe990eb011dfbc147ca6f7398f8b2ef7d7b2d89a599c590eac7525f0ea81970
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.4.2"
   intl:
     dependency: transitive
     description:
@@ -554,10 +562,10 @@ packages:
     dependency: "direct main"
     description:
       name: material_design_icons_flutter
-      sha256: "8ef8562d16e747b2d93e5da5c2508931588939c5c00ebc8e2768e803db7dfd3c"
+      sha256: "06e34d0d6da622faa900cf59801f10c89787014a834ab391e9fad0895e6f0baf"
       url: "https://pub.dev"
     source: hosted
-    version: "6.0.7096"
+    version: "5.0.5955-rc.1"
   meta:
     dependency: transitive
     description:
@@ -582,14 +590,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.9.2"
-  nested:
-    dependency: transitive
-    description:
-      name: nested
-      sha256: "03bac4c528c64c95c722ec99280375a6f2fc708eec17c7b3f07253b626cd2a20"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0"
   octo_image:
     dependency: transitive
     description:
@@ -806,14 +806,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.2.4"
-  provider:
-    dependency: "direct main"
-    description:
-      name: provider
-      sha256: cdbe7530b12ecd9eb455bdaa2fcb8d4dad22e80b8afb4798b41479d5ce26847f
-      url: "https://pub.dev"
-    source: hosted
-    version: "6.0.5"
   pub_semver:
     dependency: transitive
     description:

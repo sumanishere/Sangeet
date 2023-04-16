@@ -10,7 +10,7 @@ environment:
   sdk: ">=2.18.0 <3.0.0"
 
 dependencies:
-  app_links: ^3.4.2
+  app_links: 2.2.2
   audio_service: ^0.18.9
   audiotagger:
     git:
@@ -41,7 +41,7 @@ dependencies:
   # just_audio_libwinmedia: ^0.0.4 # For windows and linux.
   logging: ^1.1.1
   marquee: ^2.2.3
-  material_design_icons_flutter: ^6.0.7096
+  material_design_icons_flutter: 5.0.5955-rc.1
   on_audio_query: ^2.6.1
   package_info_plus: ^3.0.2
   palette_generator: ^0.3.3+2
@@ -55,8 +55,6 @@ dependencies:
   url_launcher: ^6.1.8
   uuid: ^3.0.7
   youtube_explode_dart: ^1.12.3
-  implicitly_animated_reorderable_list: ^0.4.2
-  provider: ^6.0.5
 
 dev_dependencies:
   flutter_test:
