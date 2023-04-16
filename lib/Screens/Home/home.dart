@@ -768,7 +768,7 @@ class _HomePageState extends State<HomePage> {
                                                   child: Row(
                                                     children: [
                                                       const SizedBox(
-                                                        width: 10.0,
+                                                        width: 9.5,
                                                       ),
                                                       Icon(
                                                         CupertinoIcons.search,
@@ -777,7 +777,7 @@ class _HomePageState extends State<HomePage> {
                                                             .secondary,
                                                       ),
                                                       const SizedBox(
-                                                        width: 10.0,
+                                                        width: 9.5,
                                                       ),
                                                       Text(
                                                         AppLocalizations.of(
@@ -829,7 +829,7 @@ class _HomePageState extends State<HomePage> {
                                         angle: 22 / 7 * 2,
                                         child: IconButton(
                                           icon: const Icon(
-                                            Icons.horizontal_split_rounded,
+                                            Icons.table_rows_rounded,
                                           ),
                                           // color: Theme.of(context).iconTheme.color,
                                           onPressed: () {
@@ -887,7 +887,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                           if (sectionsToShow.contains('Top Songs'))
                             SalomonBottomBarItem(
-                              icon: const Icon(Icons.trending_up_rounded),
+                              icon: const Icon(Icons.travel_explore_rounded),
                               title: Text(
                                 AppLocalizations.of(context)!.topCharts,
                               ),

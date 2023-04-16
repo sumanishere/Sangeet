@@ -111,7 +111,7 @@ class _YouTubeState extends State<YouTube>
                 angle: 22 / 7 * 2,
                 child: IconButton(
                   icon: const Icon(
-                    Icons.horizontal_split_rounded,
+                    Icons.table_rows_rounded,
                   ),
                   // color: Theme.of(context).iconTheme.color,
                   onPressed: () {
