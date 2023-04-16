@@ -1,10 +1,7 @@
-//
-
 import 'dart:async';
 import 'dart:io';
 import 'dart:math';
 import 'dart:ui' as ui;
-
 import 'package:Sangeet/CustomWidgets/add_playlist.dart';
 import 'package:Sangeet/CustomWidgets/animated_text.dart';
 import 'package:Sangeet/CustomWidgets/copy_clipboard.dart';
