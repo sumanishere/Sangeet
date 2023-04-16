@@ -1,5 +1,3 @@
-//
-
 import 'package:Sangeet/CustomWidgets/empty_screen.dart';
 import 'package:Sangeet/CustomWidgets/gradient_containers.dart';
 import 'package:Sangeet/CustomWidgets/miniplayer.dart';
