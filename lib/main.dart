@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-
 import 'package:Sangeet/Helpers/config.dart';
 import 'package:Sangeet/Helpers/countrycodes.dart';
 import 'package:Sangeet/Helpers/handle_native.dart';
@@ -158,7 +157,6 @@ class _MyAppState extends State<MyApp> {
       setState(() {});
     });
 
-    // For sharing or opening urls/text coming from outside the app while the app is in the memory
     _intentTextStreamSubscription = ReceiveSharingIntent.getTextStream().listen(
       (String value) {
         Logger.root.info('Received intent on stream: $value');
@@ -169,7 +167,6 @@ class _MyAppState extends State<MyApp> {
       },
     );
 
-    // For sharing or opening urls/text coming from outside the app while the app is closed
     ReceiveSharingIntent.getInitialText().then(
       (String? value) {
         Logger.root.info('Received Intent initially: $value');

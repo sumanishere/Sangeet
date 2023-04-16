@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:hive/hive.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
+import 'package:material_design_icons_flutter/icon_map.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class SearchBar extends StatefulWidget {
   final bool isYt;
@@ -38,6 +40,7 @@ class SearchBar extends StatefulWidget {
   State<SearchBar> createState() => _SearchBarState();
 }
 
+AppBar _searchBar(BuildContext context)
 class _SearchBarState extends State<SearchBar> {
   String tempQuery = '';
   String query = '';
