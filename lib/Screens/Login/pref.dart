@@ -1,6 +1,6 @@
-import 'package:Sangeet/CustomWidgets/gradient_containers.dart';
-import 'package:Sangeet/CustomWidgets/snackbar.dart';
-import 'package:Sangeet/Helpers/countrycodes.dart';
+import 'package:sangeet_music/CustomWidgets/gradient_containers.dart';
+import 'package:sangeet_music/CustomWidgets/snackbar.dart';
+import 'package:sangeet_music/Helpers/countrycodes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:hive/hive.dart';

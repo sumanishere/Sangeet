@@ -1,7 +1,7 @@
 //
 
-import 'package:Sangeet/Helpers/mediaitem_converter.dart';
-import 'package:Sangeet/Helpers/songs_count.dart' as songs_count;
+import 'package:sangeet_music/Helpers/mediaitem_converter.dart';
+import 'package:sangeet_music/Helpers/songs_count.dart' as songs_count;
 import 'package:audio_service/audio_service.dart';
 import 'package:hive/hive.dart';
 

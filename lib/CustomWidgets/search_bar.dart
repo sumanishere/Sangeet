@@ -1,5 +1,5 @@
 import 'dart:math';
-import 'package:Sangeet/Screens/YouTube/youtube_search.dart';
+import 'package:sangeet_music/Screens/YouTube/youtube_search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +36,6 @@ class SearchBar extends StatefulWidget {
   @override
   State<SearchBar> createState() => _SearchBarState();
 }
-
 
 class _SearchBarState extends State<SearchBar> {
   String tempQuery = '';

@@ -4,11 +4,11 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:Sangeet/APIs/api.dart';
-import 'package:Sangeet/Helpers/mediaitem_converter.dart';
-import 'package:Sangeet/Helpers/playlist.dart';
-import 'package:Sangeet/Screens/Player/audioplayer.dart';
-import 'package:Sangeet/Services/youtube_services.dart';
+import 'package:sangeet_music/APIs/api.dart';
+import 'package:sangeet_music/Helpers/mediaitem_converter.dart';
+import 'package:sangeet_music/Helpers/playlist.dart';
+import 'package:sangeet_music/Screens/Player/audioplayer.dart';
+import 'package:sangeet_music/Services/youtube_services.dart';
 import 'package:audio_service/audio_service.dart';
 import 'package:audio_session/audio_session.dart';
 import 'package:hive/hive.dart';

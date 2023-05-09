@@ -1,22 +1,6 @@
 import 'dart:io';
 import 'dart:math';
 
-import 'package:Sangeet/CustomWidgets/custom_physics.dart';
-import 'package:Sangeet/CustomWidgets/gradient_containers.dart';
-import 'package:Sangeet/CustomWidgets/miniplayer.dart';
-import 'package:Sangeet/CustomWidgets/snackbar.dart';
-import 'package:Sangeet/CustomWidgets/textinput_dialog.dart';
-import 'package:Sangeet/Helpers/backup_restore.dart';
-import 'package:Sangeet/Helpers/downloads_checker.dart';
-import 'package:Sangeet/Helpers/supabase.dart';
-import 'package:Sangeet/Screens/Home/saavn.dart';
-import 'package:Sangeet/Screens/Library/library.dart';
-import 'package:Sangeet/Screens/LocalMusic/downed_songs.dart';
-import 'package:Sangeet/Screens/Search/search.dart';
-import 'package:Sangeet/Screens/Settings/setting.dart';
-import 'package:Sangeet/Screens/Top%20Songs/top.dart';
-import 'package:Sangeet/Screens/YouTube/youtube_home.dart';
-import 'package:Sangeet/Services/ext_storage_provider.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +10,22 @@ import 'package:logging/logging.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+import 'package:sangeet_music/CustomWidgets/custom_physics.dart';
+import 'package:sangeet_music/CustomWidgets/gradient_containers.dart';
+import 'package:sangeet_music/CustomWidgets/miniplayer.dart';
+import 'package:sangeet_music/CustomWidgets/snackbar.dart';
+import 'package:sangeet_music/CustomWidgets/textinput_dialog.dart';
+import 'package:sangeet_music/Helpers/backup_restore.dart';
+import 'package:sangeet_music/Helpers/downloads_checker.dart';
+import 'package:sangeet_music/Helpers/supabase.dart';
+import 'package:sangeet_music/Screens/Home/saavn.dart';
+import 'package:sangeet_music/Screens/Library/library.dart';
+import 'package:sangeet_music/Screens/LocalMusic/downed_songs.dart';
+import 'package:sangeet_music/Screens/Search/search.dart';
+import 'package:sangeet_music/Screens/Settings/setting.dart';
+import 'package:sangeet_music/Screens/Top%20Songs/top.dart';
+import 'package:sangeet_music/Screens/YouTube/youtube_home.dart';
+import 'package:sangeet_music/Services/ext_storage_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {

@@ -1,14 +1,14 @@
 //
 
-import 'package:Sangeet/APIs/api.dart';
-import 'package:Sangeet/CustomWidgets/bouncy_sliver_scroll_view.dart';
-import 'package:Sangeet/CustomWidgets/copy_clipboard.dart';
-import 'package:Sangeet/CustomWidgets/download_button.dart';
-import 'package:Sangeet/CustomWidgets/empty_screen.dart';
-import 'package:Sangeet/CustomWidgets/gradient_containers.dart';
-import 'package:Sangeet/CustomWidgets/miniplayer.dart';
-import 'package:Sangeet/Screens/Common/song_list.dart';
-import 'package:Sangeet/Screens/Search/artists.dart';
+import 'package:sangeet_music/APIs/api.dart';
+import 'package:sangeet_music/CustomWidgets/bouncy_sliver_scroll_view.dart';
+import 'package:sangeet_music/CustomWidgets/copy_clipboard.dart';
+import 'package:sangeet_music/CustomWidgets/download_button.dart';
+import 'package:sangeet_music/CustomWidgets/empty_screen.dart';
+import 'package:sangeet_music/CustomWidgets/gradient_containers.dart';
+import 'package:sangeet_music/CustomWidgets/miniplayer.dart';
+import 'package:sangeet_music/Screens/Common/song_list.dart';
+import 'package:sangeet_music/Screens/Search/artists.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

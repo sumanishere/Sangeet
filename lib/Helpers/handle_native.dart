@@ -1,6 +1,6 @@
 //
 
-import 'package:Sangeet/Helpers/route_handler.dart';
+import 'package:sangeet_music/Helpers/route_handler.dart';
 import 'package:flutter/material.dart';
 
 void handleSharedText(

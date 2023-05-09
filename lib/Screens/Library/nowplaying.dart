@@ -1,10 +1,10 @@
 //
 
-import 'package:Sangeet/CustomWidgets/bouncy_sliver_scroll_view.dart';
-import 'package:Sangeet/CustomWidgets/empty_screen.dart';
-import 'package:Sangeet/CustomWidgets/gradient_containers.dart';
-import 'package:Sangeet/CustomWidgets/miniplayer.dart';
-import 'package:Sangeet/Screens/Player/audioplayer.dart';
+import 'package:sangeet_music/CustomWidgets/bouncy_sliver_scroll_view.dart';
+import 'package:sangeet_music/CustomWidgets/empty_screen.dart';
+import 'package:sangeet_music/CustomWidgets/gradient_containers.dart';
+import 'package:sangeet_music/CustomWidgets/miniplayer.dart';
+import 'package:sangeet_music/Screens/Player/audioplayer.dart';
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

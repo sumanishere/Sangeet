@@ -1,20 +1,20 @@
 import 'dart:io';
 
-import 'package:Sangeet/CustomWidgets/copy_clipboard.dart';
-import 'package:Sangeet/CustomWidgets/gradient_containers.dart';
-import 'package:Sangeet/CustomWidgets/popup.dart';
-import 'package:Sangeet/CustomWidgets/snackbar.dart';
-import 'package:Sangeet/CustomWidgets/textinput_dialog.dart';
-import 'package:Sangeet/Helpers/backup_restore.dart';
-import 'package:Sangeet/Helpers/config.dart';
-import 'package:Sangeet/Helpers/countrycodes.dart';
-import 'package:Sangeet/Helpers/picker.dart';
-import 'package:Sangeet/Helpers/supabase.dart';
-import 'package:Sangeet/Screens/Home/saavn.dart' as home_screen;
-import 'package:Sangeet/Screens/Settings/player_gradient.dart';
-import 'package:Sangeet/Screens/Top%20Songs/top.dart' as top_screen;
-import 'package:Sangeet/Services/ext_storage_provider.dart';
-import 'package:Sangeet/main.dart';
+import 'package:sangeet_music/CustomWidgets/copy_clipboard.dart';
+import 'package:sangeet_music/CustomWidgets/gradient_containers.dart';
+import 'package:sangeet_music/CustomWidgets/popup.dart';
+import 'package:sangeet_music/CustomWidgets/snackbar.dart';
+import 'package:sangeet_music/CustomWidgets/textinput_dialog.dart';
+import 'package:sangeet_music/Helpers/backup_restore.dart';
+import 'package:sangeet_music/Helpers/config.dart';
+import 'package:sangeet_music/Helpers/countrycodes.dart';
+import 'package:sangeet_music/Helpers/picker.dart';
+import 'package:sangeet_music/Helpers/supabase.dart';
+import 'package:sangeet_music/Screens/Home/saavn.dart' as home_screen;
+import 'package:sangeet_music/Screens/Settings/player_gradient.dart';
+import 'package:sangeet_music/Screens/Top%20Songs/top.dart' as top_screen;
+import 'package:sangeet_music/Services/ext_storage_provider.dart';
+import 'package:sangeet_music/main.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -74,8 +74,8 @@ class _SettingPageState extends State<SettingPage>
       Hive.box('settings').get('region', defaultValue: 'India') as String;
   bool useProxy =
       Hive.box('settings').get('useProxy', defaultValue: false) as bool;
-  String themeColor =
-      Hive.box('settings').get('themeColor', defaultValue: 'Light Blue') as String;
+  String themeColor = Hive.box('settings')
+      .get('themeColor', defaultValue: 'Light Blue') as String;
   int colorHue = Hive.box('settings').get('colorHue', defaultValue: 400) as int;
   int downFilename =
       Hive.box('settings').get('downFilename', defaultValue: 0) as int;

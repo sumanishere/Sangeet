@@ -2,8 +2,8 @@
 
 import 'dart:convert';
 
-import 'package:Sangeet/Helpers/extensions.dart';
-import 'package:Sangeet/Services/ytmusic/nav.dart';
+import 'package:sangeet_music/Helpers/extensions.dart';
+import 'package:sangeet_music/Services/ytmusic/nav.dart';
 import 'package:http/http.dart';
 import 'package:logging/logging.dart';
 

@@ -1,11 +1,11 @@
 //
 
-import 'package:Sangeet/CustomWidgets/collage.dart';
-import 'package:Sangeet/CustomWidgets/gradient_containers.dart';
-import 'package:Sangeet/CustomWidgets/snackbar.dart';
-import 'package:Sangeet/CustomWidgets/textinput_dialog.dart';
-import 'package:Sangeet/Helpers/audio_query.dart';
-import 'package:Sangeet/Helpers/playlist.dart';
+import 'package:sangeet_music/CustomWidgets/collage.dart';
+import 'package:sangeet_music/CustomWidgets/gradient_containers.dart';
+import 'package:sangeet_music/CustomWidgets/snackbar.dart';
+import 'package:sangeet_music/CustomWidgets/textinput_dialog.dart';
+import 'package:sangeet_music/Helpers/audio_query.dart';
+import 'package:sangeet_music/Helpers/playlist.dart';
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

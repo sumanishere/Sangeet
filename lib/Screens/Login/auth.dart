@@ -1,7 +1,7 @@
-import 'package:Sangeet/CustomWidgets/gradient_containers.dart';
-import 'package:Sangeet/Helpers/backup_restore.dart';
-import 'package:Sangeet/Helpers/config.dart';
-import 'package:Sangeet/Helpers/supabase.dart';
+import 'package:sangeet_music/CustomWidgets/gradient_containers.dart';
+import 'package:sangeet_music/Helpers/backup_restore.dart';
+import 'package:sangeet_music/Helpers/config.dart';
+import 'package:sangeet_music/Helpers/supabase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_it/get_it.dart';

@@ -2,8 +2,8 @@
 
 import 'dart:io';
 
-import 'package:Sangeet/CustomWidgets/gradient_containers.dart';
-import 'package:Sangeet/Screens/Player/audioplayer.dart';
+import 'package:sangeet_music/CustomWidgets/gradient_containers.dart';
+import 'package:sangeet_music/Screens/Player/audioplayer.dart';
 import 'package:audio_service/audio_service.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';

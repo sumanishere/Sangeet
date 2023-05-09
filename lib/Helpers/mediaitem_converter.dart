@@ -1,4 +1,4 @@
-import 'package:Sangeet/Helpers/image_resolution_modifier.dart';
+import 'package:sangeet_music/Helpers/image_resolution_modifier.dart';
 import 'package:audio_service/audio_service.dart';
 
 // ignore: avoid_classes_with_only_static_members

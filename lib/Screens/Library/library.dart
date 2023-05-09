@@ -2,9 +2,9 @@
 
 import 'dart:io';
 
-import 'package:Sangeet/Screens/Library/liked.dart';
-import 'package:Sangeet/Screens/LocalMusic/downed_songs.dart';
-import 'package:Sangeet/Screens/LocalMusic/downed_songs_desktop.dart';
+import 'package:sangeet_music/Screens/Library/liked.dart';
+import 'package:sangeet_music/Screens/LocalMusic/downed_songs.dart';
+import 'package:sangeet_music/Screens/LocalMusic/downed_songs_desktop.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';

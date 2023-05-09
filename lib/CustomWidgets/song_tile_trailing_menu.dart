@@ -1,10 +1,10 @@
-import 'package:Sangeet/CustomWidgets/add_playlist.dart';
-import 'package:Sangeet/Helpers/add_mediaitem_to_queue.dart';
-import 'package:Sangeet/Helpers/mediaitem_converter.dart';
-import 'package:Sangeet/Screens/Common/song_list.dart';
-import 'package:Sangeet/Screens/Search/albums.dart';
-import 'package:Sangeet/Screens/Search/search.dart';
-import 'package:Sangeet/Services/youtube_services.dart';
+import 'package:sangeet_music/CustomWidgets/add_playlist.dart';
+import 'package:sangeet_music/Helpers/add_mediaitem_to_queue.dart';
+import 'package:sangeet_music/Helpers/mediaitem_converter.dart';
+import 'package:sangeet_music/Screens/Common/song_list.dart';
+import 'package:sangeet_music/Screens/Search/albums.dart';
+import 'package:sangeet_music/Screens/Search/search.dart';
+import 'package:sangeet_music/Services/youtube_services.dart';
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

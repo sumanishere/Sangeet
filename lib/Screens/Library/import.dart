@@ -1,14 +1,14 @@
 //
 
-import 'package:Sangeet/APIs/spotify_api.dart';
-import 'package:Sangeet/CustomWidgets/gradient_containers.dart';
-import 'package:Sangeet/CustomWidgets/miniplayer.dart';
-import 'package:Sangeet/CustomWidgets/snackbar.dart';
-import 'package:Sangeet/CustomWidgets/textinput_dialog.dart';
-import 'package:Sangeet/Helpers/import_export_playlist.dart';
-import 'package:Sangeet/Helpers/playlist.dart';
-import 'package:Sangeet/Helpers/search_add_playlist.dart';
-import 'package:Sangeet/Helpers/spotify_helper.dart';
+import 'package:sangeet_music/APIs/spotify_api.dart';
+import 'package:sangeet_music/CustomWidgets/gradient_containers.dart';
+import 'package:sangeet_music/CustomWidgets/miniplayer.dart';
+import 'package:sangeet_music/CustomWidgets/snackbar.dart';
+import 'package:sangeet_music/CustomWidgets/textinput_dialog.dart';
+import 'package:sangeet_music/Helpers/import_export_playlist.dart';
+import 'package:sangeet_music/Helpers/playlist.dart';
+import 'package:sangeet_music/Helpers/search_add_playlist.dart';
+import 'package:sangeet_music/Helpers/spotify_helper.dart';
 import 'package:app_links/app_links.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';

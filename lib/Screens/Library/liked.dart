@@ -1,18 +1,18 @@
 //
 
-import 'package:Sangeet/CustomWidgets/collage.dart';
-import 'package:Sangeet/CustomWidgets/custom_physics.dart';
-import 'package:Sangeet/CustomWidgets/data_search.dart';
-import 'package:Sangeet/CustomWidgets/download_button.dart';
-import 'package:Sangeet/CustomWidgets/empty_screen.dart';
-import 'package:Sangeet/CustomWidgets/gradient_containers.dart';
-import 'package:Sangeet/CustomWidgets/like_button.dart';
-import 'package:Sangeet/CustomWidgets/miniplayer.dart';
-import 'package:Sangeet/CustomWidgets/playlist_head.dart';
-import 'package:Sangeet/CustomWidgets/song_tile_trailing_menu.dart';
-import 'package:Sangeet/Helpers/songs_count.dart' as songs_count;
-import 'package:Sangeet/Screens/Library/show_songs.dart';
-import 'package:Sangeet/Services/player_service.dart';
+import 'package:sangeet_music/CustomWidgets/collage.dart';
+import 'package:sangeet_music/CustomWidgets/custom_physics.dart';
+import 'package:sangeet_music/CustomWidgets/data_search.dart';
+import 'package:sangeet_music/CustomWidgets/download_button.dart';
+import 'package:sangeet_music/CustomWidgets/empty_screen.dart';
+import 'package:sangeet_music/CustomWidgets/gradient_containers.dart';
+import 'package:sangeet_music/CustomWidgets/like_button.dart';
+import 'package:sangeet_music/CustomWidgets/miniplayer.dart';
+import 'package:sangeet_music/CustomWidgets/playlist_head.dart';
+import 'package:sangeet_music/CustomWidgets/song_tile_trailing_menu.dart';
+import 'package:sangeet_music/Helpers/songs_count.dart' as songs_count;
+import 'package:sangeet_music/Screens/Library/show_songs.dart';
+import 'package:sangeet_music/Services/player_service.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

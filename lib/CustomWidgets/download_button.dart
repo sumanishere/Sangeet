@@ -1,8 +1,8 @@
 //
 
-import 'package:Sangeet/APIs/api.dart';
-import 'package:Sangeet/CustomWidgets/snackbar.dart';
-import 'package:Sangeet/Services/download.dart';
+import 'package:sangeet_music/APIs/api.dart';
+import 'package:sangeet_music/CustomWidgets/snackbar.dart';
+import 'package:sangeet_music/Services/download.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:hive/hive.dart';

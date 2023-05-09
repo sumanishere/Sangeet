@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:Sangeet/CustomWidgets/snackbar.dart';
-import 'package:Sangeet/Helpers/lyrics.dart';
-import 'package:Sangeet/Services/ext_storage_provider.dart';
+import 'package:sangeet_music/CustomWidgets/snackbar.dart';
+import 'package:sangeet_music/Helpers/lyrics.dart';
+import 'package:sangeet_music/Services/ext_storage_provider.dart';
 import 'package:audiotagger/audiotagger.dart';
 import 'package:audiotagger/models/tag.dart';
 import 'package:flutter/foundation.dart';
