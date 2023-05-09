@@ -86,7 +86,7 @@ Future<void> startService() async {
   final AudioPlayerHandler audioHandler = await AudioService.init(
     builder: () => AudioPlayerHandlerImpl(),
     config: AudioServiceConfig(
-      androidNotificationChannelId: 'com.suman.sangeet.channel.audio',
+      androidNotificationChannelId: 'com.suman.sangeet_music.channel.audio',
       androidNotificationChannelName: 'Sangeet',
       androidNotificationIcon: 'drawable/ic_stat_music_note',
       androidShowNotificationBadge: true,

@@ -76,7 +76,7 @@ flutter:
 msix_config:
   display_name: Sangeet
   publisher_display_name: B27 Group
-  identity_name: com.suman.sangeet
+  identity_name: com.suman.sangeet_music
   icons_background_color: transparent
   logo_path: assets/ic_launcher.png
   file_extension: .mp3, .m4a

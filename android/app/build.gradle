@@ -40,7 +40,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.suman.sangeet"
+        applicationId "com.suman.sangeet_music"
         minSdkVersion 21
         targetSdkVersion 33
         versionCode flutterVersionCode.toInteger()

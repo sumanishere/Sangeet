@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:938273869324:android:b1484d29d2195f7217a829",
         "android_client_info": {
-          "package_name": "com.suman.sangeet"
+          "package_name": "com.suman.sangeet_music"
         }
       },
       "oauth_client": [
@@ -34,7 +34,7 @@
               "client_id": "938273869324-gcbmdo8pnfjpm05o7d1mojilmh6jt260.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.suman.sangeet"
+                "bundle_id": "com.suman.sangeet_music"
               }
             }
           ]

@@ -34,8 +34,8 @@ class ExtStorageProvider {
           directory = await getExternalStorageDirectory();
 
           // getting main path
-          final String newPath = directory!.path
-              .replaceFirst('Android/data/com.suman.sangeet/files', dirName);
+          final String newPath = directory!.path.replaceFirst(
+              'Android/data/com.suman.sangeet_music/files', dirName);
 
           directory = Directory(newPath);
 
