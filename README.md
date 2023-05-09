@@ -10,3 +10,10 @@ Team Members:
     2. Mayank Jaiswal
     3. Sayan Dey
     4. Dayanand Kumar Mahto
+App Logo
+
+<img src=".assets/ic_launcher.png" />
+
+App Splash Screen
+
+<img src=".assets/splash.jpeg" />
