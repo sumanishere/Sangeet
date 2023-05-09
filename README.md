@@ -17,18 +17,20 @@ College Name : Heritage Institute of Technology, Kolkata
 
 ## • App Splash Screen
 
-<img src="./assets/splash.jpeg" height="300"/>
+<img src="./assets/splash.jpeg" height="500"/>
 
 ### • Fork My Repo:
 
 [Fork my Repository](https://github.com/sumanishere/Sangeet/fork)
 
+### • Craete An Issue:
+
 [Create An Issue](https://github.com/sumanishere/Sangeet/issues/new)
 
 ## • Join Our Telegram Group
 
-[<img src="./get_telegram.png" width="150"/>](https://telegram.me/sangeetmusicapp)
+[<img src="./assets/get_telegram.png" width="200"/>](https://telegram.me/sangeetmusicapp)
 
 ### • Also Follow Me on Twitter:
 
-https://twitter.com/@iam_sumandey
+[<img src="./assets/tweet.png" width="200"/>]https://twitter.com/@iam_sumandey
