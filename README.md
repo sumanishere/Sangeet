@@ -4,7 +4,7 @@ This is a Music Player app made by our College Team using Flutter
 
 College Name : Heritage Institute of Technology, Kolkata
 
-## • Team Members:
+## • Team Members
 
     1. Suman Kumar Dey
     2. Mayank Jaiswal
@@ -19,11 +19,11 @@ College Name : Heritage Institute of Technology, Kolkata
 
 <img src="./assets/splash.jpeg" height="500"/>
 
-### • Fork My Repo:
+### • Fork My Repo
 
 [Fork my Repository](https://github.com/sumanishere/Sangeet/fork)
 
-### • Craete An Issue:
+### • Craete An Issue
 
 [Create An Issue](https://github.com/sumanishere/Sangeet/issues/new)
 
@@ -31,6 +31,10 @@ College Name : Heritage Institute of Technology, Kolkata
 
 [<img src="./assets/get_telegram.png" width="200"/>](https://telegram.me/sangeetmusicapp)
 
-### • Also Follow Me on Twitter:
+### • Also Follow Me on Twitter
 
 [<img src="./assets/tweet.png" width="200" height="85"/>](https://twitter.com/@iam_sumandey)
+
+## Check Out More Projects on My Main Github Account
+
+[<img src="./assets/Github_Logo.png" width="200" height="85"/>](https://github.com/sumandey07)
