@@ -25,5 +25,3 @@ College Name : Heritage Institute of Technology, Kolkata
     https://telegram.me/sangeetmusicapp
 
 ### Also Follow Me on Twitter:
-
-    https://twitter.com/@iam_sumandey
