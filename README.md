@@ -33,4 +33,4 @@ College Name : Heritage Institute of Technology, Kolkata
 
 ### • Also Follow Me on Twitter:
 
-[<img src="./assets/tweet.png" width="200"/>](https://twitter.com/@iam_sumandey)
+[<img src="./assets/tweet.png" width="200" height="60"/>](https://twitter.com/@iam_sumandey)
