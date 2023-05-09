@@ -1,6 +1,6 @@
 # Sangeet Music
 
-This is a Music Player app made by our College Team using Flutter
+This is a Material Online Music Player app made by our College Team using Flutter.
 
 ## • College Name
 
@@ -15,11 +15,11 @@ This is a Music Player app made by our College Team using Flutter
 
 ## • App Logo
 
-    <img src="./assets/ic_launcher.png" width="100"/>
+<img src="./assets/ic_launcher.png" width="100"/>
 
 ## • App Splash Screen
 
-    <img src="./assets/splash.jpeg" height="500"/>
+<img src="./assets/splash.jpeg" height="500"/>
 
 ### • Fork My Repo
 
