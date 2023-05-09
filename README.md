@@ -19,9 +19,13 @@ College Name : Heritage Institute of Technology, Kolkata
 
 <img src="./assets/splash.jpeg" />
 
+### •Fork My Repo:
+
+[fork my repository](https://github.com/sumanishere/Sangeet/fork)
+
 ## Join Our Telegram Group
 
-<img src=".get_telegram.png" />
+<img src="./get_telegram.png" />
 https://telegram.me/sangeetmusicapp
 
 ### Also Follow Me on Twitter:
