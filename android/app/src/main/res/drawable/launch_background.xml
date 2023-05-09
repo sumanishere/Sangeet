@@ -13,7 +13,6 @@
     <item android:bottom="150dp">
         <bitmap
             android:gravity="bottom"
-            android:tint="@android:color/white"
             android:src="@mipmap/name"/>
     </item>
 
