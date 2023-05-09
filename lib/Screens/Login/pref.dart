@@ -451,7 +451,7 @@ class _PrefScreenState extends State<PrefScreen> {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10.0),
                                       // color: Theme.of(context).accentColor,
-                                      color: Colors.tealAccent[400],
+                                      color: Colors.blueAccent[400],
                                       boxShadow: const [
                                         BoxShadow(
                                           color: Colors.black26,

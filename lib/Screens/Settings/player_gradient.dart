@@ -23,7 +23,7 @@ class _PlayerGradientSelectionState extends State<PlayerGradientSelection> {
     'fullDark',
     'fullMix'
   ];
-  final List<Color?> gradientColor = [Colors.lightGreen, Colors.teal];
+  final List<Color?> gradientColor = [Colors.lightBlue, Colors.blue];
   final MyTheme currentTheme = GetIt.I<MyTheme>();
   String gradientType = Hive.box('settings')
       .get('gradientType', defaultValue: 'halfDark')

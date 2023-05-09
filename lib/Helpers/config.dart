@@ -9,7 +9,7 @@ class MyTheme with ChangeNotifier {
       Hive.box('settings').get('useSystemTheme', defaultValue: false) as bool;
 
   String accentColor =
-      Hive.box('settings').get('themeColor', defaultValue: 'Teal') as String;
+      Hive.box('settings').get('themeColor', defaultValue: 'Light Blue') as String;
   String canvasColor =
       Hive.box('settings').get('canvasColor', defaultValue: 'Grey') as String;
   String cardColor =
@@ -121,7 +121,7 @@ class MyTheme with ChangeNotifier {
     _useSystemTheme =
         settingsBox.get('useSystemTheme', defaultValue: false) as bool;
 
-    accentColor = settingsBox.get('themeColor', defaultValue: 'Teal') as String;
+    accentColor = settingsBox.get('themeColor', defaultValue: 'Light Blue') as String;
     canvasColor =
         settingsBox.get('canvasColor', defaultValue: 'Grey') as String;
     cardColor = settingsBox.get('cardColor', defaultValue: 'Grey900') as String;
@@ -204,7 +204,7 @@ class MyTheme with ChangeNotifier {
         return Colors.white;
 
       default:
-        return _isDark ? Colors.tealAccent[400]! : Colors.lightBlueAccent[400]!;
+        return _isDark ? Colors.blueAccent[200]! : Colors.lightBlueAccent[400]!;
     }
   }
 
@@ -292,7 +292,7 @@ class MyTheme with ChangeNotifier {
         return Colors.white;
 
       default:
-        return _isDark ? Colors.tealAccent[400]! : Colors.lightBlueAccent[400]!;
+        return _isDark ? Colors.blueAccent[200]! : Colors.lightBlueAccent[400]!;
     }
   }
 
