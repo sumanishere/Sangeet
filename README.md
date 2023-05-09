@@ -15,10 +15,6 @@ College Name : Heritage Institute of Technology, Kolkata
 
 <img src="./assets/ic_launcher.png" width="100"/>
 
-## • App Splash Screen
-
-<img src="./assets/splash.jpeg" height="500"/>
-
 ### • Fork My Repo
 
 [Fork my Repository](https://github.com/sumanishere/Sangeet/fork)
