@@ -127,7 +127,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 80,
-                                          color: Colors.white,
+                                          color: Colors.teal,
                                         ),
                                       ),
                                       TextSpan(
@@ -135,9 +135,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 80,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .secondary,
+                                          color: Colors.amber,
                                         ),
                                       ),
                                     ],
@@ -160,7 +158,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                   height: 57.0,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10.0),
-                                    color: Colors.grey[900],
+                                    color: Colors.white,
                                     boxShadow: const [
                                       BoxShadow(
                                         color: Colors.black26,
@@ -192,7 +190,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                       hintText: AppLocalizations.of(context)!
                                           .enterName,
                                       hintStyle: const TextStyle(
-                                        color: Colors.white60,
+                                        color: Colors.black38,
                                       ),
                                     ),
                                     onSubmitted: (String value) async {

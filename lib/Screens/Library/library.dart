@@ -44,7 +44,7 @@ class _LibraryPageState extends State<LibraryPage> {
                       child: IconButton(
                         color: Theme.of(context).iconTheme.color,
                         icon: const Icon(
-                          Icons.horizontal_split_rounded,
+                          Icons.table_rows_rounded,
                         ),
                         onPressed: () {
                           Scaffold.of(context).openDrawer();

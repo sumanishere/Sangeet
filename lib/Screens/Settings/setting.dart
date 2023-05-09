@@ -240,7 +240,7 @@ class _SettingPageState extends State<SettingPage>
                                 .darkMode,
                           ),
                           keyName: 'darkMode',
-                          defaultValue: true,
+                          defaultValue: false,
                           onChanged: (bool val, Box box) {
                             box.put(
                               'useSystemTheme',
@@ -911,10 +911,10 @@ class _SettingPageState extends State<SettingPage>
                           dense: true,
                           onTap: () {
                             currentTheme.switchTheme(
-                              useSystemTheme: false,
-                              isDark: true,
+                              useSystemTheme: true,
+                              isDark: false,
                             );
-                            Hive.box('settings').put('darkMode', true);
+                            Hive.box('settings').put('darkMode', false);
 
                             settingsBox.put('backGrad', 4);
                             currentTheme.backGrad = 4;

@@ -3,7 +3,7 @@ import 'package:hive/hive.dart';
 
 class MyTheme with ChangeNotifier {
   bool _isDark =
-      Hive.box('settings').get('darkMode', defaultValue: true) as bool;
+      Hive.box('settings').get('darkMode', defaultValue: false) as bool;
 
   bool _useSystemTheme =
       Hive.box('settings').get('useSystemTheme', defaultValue: false) as bool;

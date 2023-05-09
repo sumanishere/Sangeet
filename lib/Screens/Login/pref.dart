@@ -107,7 +107,7 @@ class _PrefScreenState extends State<PrefScreen> {
                                           style: const TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 75,
-                                            color: Colors.white,
+                                            color: Colors.teal,
                                           ),
                                         ),
                                         TextSpan(
@@ -115,9 +115,7 @@ class _PrefScreenState extends State<PrefScreen> {
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 70,
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .secondary,
+                                            color: Colors.amber,
                                           ),
                                         ),
                                         TextSpan(
@@ -127,17 +125,9 @@ class _PrefScreenState extends State<PrefScreen> {
                                             height: 1.5,
                                             fontWeight: FontWeight.bold,
                                             fontSize: 20,
-                                            color: Colors.white,
+                                            color: Colors.cyan,
                                           ),
                                         ),
-                                        // TextSpan(
-                                        //   text: '?',
-                                        //   style: TextStyle(
-                                        //     fontWeight: FontWeight.bold,
-                                        //     fontSize: 20,
-                                        //     color: Theme.of(context).accentColor,
-                                        //   ),
-                                        // ),
                                       ],
                                     ),
                                   ),
@@ -165,7 +155,7 @@ class _PrefScreenState extends State<PrefScreen> {
                                     width: 150,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10.0),
-                                      color: Colors.grey[900],
+                                      color: Colors.white,
                                       boxShadow: const [
                                         BoxShadow(
                                           color: Colors.black26,
@@ -353,7 +343,7 @@ class _PrefScreenState extends State<PrefScreen> {
                                     width: 150,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10.0),
-                                      color: Colors.grey[900],
+                                      color: Colors.white,
                                       boxShadow: const [
                                         BoxShadow(
                                           color: Colors.black26,
