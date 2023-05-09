@@ -37,4 +37,4 @@ College Name : Heritage Institute of Technology, Kolkata
 
 ## Check Out More Projects on My Main Github Account
 
-[<img src="./assets/Github_Logo.png" width="200" height="85"/>](https://github.com/sumandey07)
+[<img src="./assets/GitHub_Logo.png" width="200" height="85"/>](https://github.com/sumandey07)
