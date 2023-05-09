@@ -4,7 +4,7 @@ This is a Music Player app made by our College Team using Flutter
 
 College Name : Heritage Institute of Technology, Kolkata
 
-Team Members:
+## Team Members:
 
     1. Suman Kumar Dey
     2. Mayank Jaiswal
@@ -21,13 +21,9 @@ Team Members:
 
 ## Join Our Telegram Group
 
-```
     <img src=".get_telegram.png" />
     https://telegram.me/sangeetmusicapp
-```
 
 ### Also Follow Me on Twitter:
 
-```
     https://twitter.com/@iam_sumandey
-```
