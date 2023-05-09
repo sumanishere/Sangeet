@@ -4,30 +4,31 @@ This is a Music Player app made by our College Team using Flutter
 
 College Name : Heritage Institute of Technology, Kolkata
 
-## Team Members:
+## • Team Members:
 
     1. Suman Kumar Dey
     2. Mayank Jaiswal
     3. Sayan Dey
     4. Dayanand Kumar Mahto
 
-## App Logo
+## • App Logo
 
-<img src="./assets/ic_launcher.png" />
+<img src="./assets/ic_launcher.png" width="100"/>
 
-## App Splash Screen
+## • App Splash Screen
 
-<img src="./assets/splash.jpeg" />
+<img src="./assets/splash.jpeg" height="300"/>
 
-### •Fork My Repo:
+### • Fork My Repo:
 
-[fork my repository](https://github.com/sumanishere/Sangeet/fork)
+[Fork my Repository](https://github.com/sumanishere/Sangeet/fork)
 
-## Join Our Telegram Group
+[Create An Issue](https://github.com/sumanishere/Sangeet/issues/new)
 
-<img src="./get_telegram.png" />
-https://telegram.me/sangeetmusicapp
+## • Join Our Telegram Group
 
-### Also Follow Me on Twitter:
+[<img src="./get_telegram.png" width="150"/>](https://telegram.me/sangeetmusicapp)
+
+### • Also Follow Me on Twitter:
 
 https://twitter.com/@iam_sumandey
