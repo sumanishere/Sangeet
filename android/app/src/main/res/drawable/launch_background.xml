@@ -14,7 +14,7 @@
         <bitmap
             android:gravity="bottom"
             android:tint="@android:color/white"
-            android:text="@string/bottom_name"/>
+            android:src="@mipmap/name"/>
     </item>
 
 </layer-list>
