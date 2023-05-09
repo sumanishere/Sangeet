@@ -3,7 +3,7 @@
     android:description="@string/app_widget_description"
     android:initialKeyguardLayout="@layout/sangeet_widget"
     android:initialLayout="@layout/sangeet_widget"
-    android:minWidth="180dp"
+    android:minWidth="160dp"
     android:minHeight="40dp"
     android:resizeMode="horizontal|vertical"
     android:updatePeriodMillis="86400000"
