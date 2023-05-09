@@ -10,7 +10,7 @@
             android:src="@mipmap/splash" />
     </item>
 
-    <item android:bottom="150dp">
+    <item android:bottom="80dp">
         <bitmap
             android:gravity="bottom"
             android:src="@mipmap/name"/>
