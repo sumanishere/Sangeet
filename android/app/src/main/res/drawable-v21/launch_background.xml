@@ -9,4 +9,12 @@
             android:gravity="center"
             android:src="@mipmap/splash" />
     </item>
+
+    <item android:bottom="150dp">
+        <bitmap
+            android:gravity="bottom"
+            android:tint="@android:color/white"
+            android:text="@string/bottom_name"/>
+    </item>
+
 </layer-list>
