@@ -1,4 +1,4 @@
-# Sangeet
+# Sangeet Music
 
 This is a Music Player app made by our College Team using Flutter
 
@@ -11,10 +11,23 @@ Team Members:
     3. Sayan Dey
     4. Dayanand Kumar Mahto
 
-# App Logo
+## App Logo
 
-<img src=".assets/ic_launcher.png" />
+<img src="./assets/ic_launcher.png" />
 
-# App Splash Screen
+## App Splash Screen
 
-<img src=".assets/splash.jpeg" />
+<img src="./assets/splash.jpeg" />
+
+## Join Our Telegram Group
+
+```
+    <img src=".get_telegram.png" />
+    https://telegram.me/sangeetmusicapp
+```
+
+### Also Follow Me on Twitter:
+
+```
+    https://twitter.com/@iam_sumandey
+```
