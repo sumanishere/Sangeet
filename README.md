@@ -2,7 +2,9 @@
 
 This is a Music Player app made by our College Team using Flutter
 
-College Name : Heritage Institute of Technology, Kolkata
+## • College Name
+
+    Heritage Institute of Technology, Kolkata
 
 ## • Team Members
 
@@ -13,7 +15,11 @@ College Name : Heritage Institute of Technology, Kolkata
 
 ## • App Logo
 
-<img src="./assets/ic_launcher.png" width="100"/>
+    <img src="./assets/ic_launcher.png" width="100"/>
+
+## • App Splash Screen
+
+    <img src="./assets/splash.jpeg" height="500"/>
 
 ### • Fork My Repo
 
