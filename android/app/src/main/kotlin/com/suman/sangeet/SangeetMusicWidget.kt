@@ -1,4 +1,4 @@
-package com.suman.sangeet_music
+package com.suman.sangeet
 
 import MainActivity
 import android.app.PendingIntent
