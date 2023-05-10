@@ -2,9 +2,9 @@
 
 import 'dart:io';
 
-import 'package:sangeet_music/Helpers/mediaitem_converter.dart';
-import 'package:sangeet_music/Screens/Player/audioplayer.dart';
-import 'package:sangeet_music/Services/youtube_services.dart';
+import 'package:sangeet/Helpers/mediaitem_converter.dart';
+import 'package:sangeet/Screens/Player/audioplayer.dart';
+import 'package:sangeet/Services/youtube_services.dart';
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:get_it/get_it.dart';

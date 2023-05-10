@@ -1,15 +1,15 @@
 //
 
-import 'package:sangeet_music/APIs/api.dart';
-import 'package:sangeet_music/APIs/spotify_api.dart';
-import 'package:sangeet_music/Helpers/audio_query.dart';
-import 'package:sangeet_music/Helpers/spotify_helper.dart';
-import 'package:sangeet_music/Screens/Common/song_list.dart';
-import 'package:sangeet_music/Screens/Player/audioplayer.dart';
-import 'package:sangeet_music/Screens/Search/search.dart';
-import 'package:sangeet_music/Screens/YouTube/youtube_playlist.dart';
-import 'package:sangeet_music/Services/player_service.dart';
-import 'package:sangeet_music/Services/youtube_services.dart';
+import 'package:sangeet/APIs/api.dart';
+import 'package:sangeet/APIs/spotify_api.dart';
+import 'package:sangeet/Helpers/audio_query.dart';
+import 'package:sangeet/Helpers/spotify_helper.dart';
+import 'package:sangeet/Screens/Common/song_list.dart';
+import 'package:sangeet/Screens/Player/audioplayer.dart';
+import 'package:sangeet/Screens/Search/search.dart';
+import 'package:sangeet/Screens/YouTube/youtube_playlist.dart';
+import 'package:sangeet/Services/player_service.dart';
+import 'package:sangeet/Services/youtube_services.dart';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 import 'package:on_audio_query/on_audio_query.dart';

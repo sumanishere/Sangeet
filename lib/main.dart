@@ -1,23 +1,23 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:sangeet_music/Helpers/config.dart';
-import 'package:sangeet_music/Helpers/countrycodes.dart';
-import 'package:sangeet_music/Helpers/handle_native.dart';
-import 'package:sangeet_music/Helpers/import_export_playlist.dart';
-import 'package:sangeet_music/Helpers/logging.dart';
-import 'package:sangeet_music/Helpers/route_handler.dart';
-import 'package:sangeet_music/Screens/About/about.dart';
-import 'package:sangeet_music/Screens/Home/home.dart';
-import 'package:sangeet_music/Screens/Library/downloads.dart';
-import 'package:sangeet_music/Screens/Library/nowplaying.dart';
-import 'package:sangeet_music/Screens/Library/playlists.dart';
-import 'package:sangeet_music/Screens/Library/recent.dart';
-import 'package:sangeet_music/Screens/Login/auth.dart';
-import 'package:sangeet_music/Screens/Login/pref.dart';
-import 'package:sangeet_music/Screens/Player/audioplayer.dart';
-import 'package:sangeet_music/Screens/Settings/setting.dart';
-import 'package:sangeet_music/Services/audio_service.dart';
-import 'package:sangeet_music/theme/app_theme.dart';
+import 'package:sangeet/Helpers/config.dart';
+import 'package:sangeet/Helpers/countrycodes.dart';
+import 'package:sangeet/Helpers/handle_native.dart';
+import 'package:sangeet/Helpers/import_export_playlist.dart';
+import 'package:sangeet/Helpers/logging.dart';
+import 'package:sangeet/Helpers/route_handler.dart';
+import 'package:sangeet/Screens/About/about.dart';
+import 'package:sangeet/Screens/Home/home.dart';
+import 'package:sangeet/Screens/Library/downloads.dart';
+import 'package:sangeet/Screens/Library/nowplaying.dart';
+import 'package:sangeet/Screens/Library/playlists.dart';
+import 'package:sangeet/Screens/Library/recent.dart';
+import 'package:sangeet/Screens/Login/auth.dart';
+import 'package:sangeet/Screens/Login/pref.dart';
+import 'package:sangeet/Screens/Player/audioplayer.dart';
+import 'package:sangeet/Screens/Settings/setting.dart';
+import 'package:sangeet/Services/audio_service.dart';
+import 'package:sangeet/theme/app_theme.dart';
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -86,7 +86,7 @@ Future<void> startService() async {
   final AudioPlayerHandler audioHandler = await AudioService.init(
     builder: () => AudioPlayerHandlerImpl(),
     config: AudioServiceConfig(
-      androidNotificationChannelId: 'com.suman.sangeet_music.channel.audio',
+      androidNotificationChannelId: 'com.suman.sangeet.channel.audio',
       androidNotificationChannelName: 'Sangeet',
       androidNotificationIcon: 'drawable/ic_stat_music_note',
       androidShowNotificationBadge: true,

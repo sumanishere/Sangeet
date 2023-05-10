@@ -1,6 +1,6 @@
 //
 
-import 'package:sangeet_music/Helpers/config.dart';
+import 'package:sangeet/Helpers/config.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 

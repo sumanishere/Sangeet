@@ -2,16 +2,16 @@
 
 import 'dart:io';
 
-import 'package:sangeet_music/CustomWidgets/custom_physics.dart';
-import 'package:sangeet_music/CustomWidgets/data_search.dart';
-import 'package:sangeet_music/CustomWidgets/empty_screen.dart';
-import 'package:sangeet_music/CustomWidgets/gradient_containers.dart';
-import 'package:sangeet_music/CustomWidgets/miniplayer.dart';
-import 'package:sangeet_music/CustomWidgets/playlist_head.dart';
-import 'package:sangeet_music/CustomWidgets/snackbar.dart';
-import 'package:sangeet_music/Helpers/picker.dart';
-import 'package:sangeet_music/Screens/Library/liked.dart';
-import 'package:sangeet_music/Services/player_service.dart';
+import 'package:sangeet/CustomWidgets/custom_physics.dart';
+import 'package:sangeet/CustomWidgets/data_search.dart';
+import 'package:sangeet/CustomWidgets/empty_screen.dart';
+import 'package:sangeet/CustomWidgets/gradient_containers.dart';
+import 'package:sangeet/CustomWidgets/miniplayer.dart';
+import 'package:sangeet/CustomWidgets/playlist_head.dart';
+import 'package:sangeet/CustomWidgets/snackbar.dart';
+import 'package:sangeet/Helpers/picker.dart';
+import 'package:sangeet/Screens/Library/liked.dart';
+import 'package:sangeet/Services/player_service.dart';
 import 'package:audiotagger/audiotagger.dart';
 import 'package:audiotagger/models/tag.dart';
 import 'package:flutter/cupertino.dart';

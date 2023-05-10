@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:sangeet_music/APIs/api.dart';
+import 'package:sangeet/APIs/api.dart';
 import 'package:http/http.dart';
 
 Future<void> getArtistImage({

@@ -1,9 +1,9 @@
 //
 
-import 'package:sangeet_music/CustomWidgets/like_button.dart';
-import 'package:sangeet_music/CustomWidgets/on_hover.dart';
-import 'package:sangeet_music/CustomWidgets/song_tile_trailing_menu.dart';
-import 'package:sangeet_music/Helpers/image_resolution_modifier.dart';
+import 'package:sangeet/CustomWidgets/like_button.dart';
+import 'package:sangeet/CustomWidgets/on_hover.dart';
+import 'package:sangeet/CustomWidgets/song_tile_trailing_menu.dart';
+import 'package:sangeet/Helpers/image_resolution_modifier.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 

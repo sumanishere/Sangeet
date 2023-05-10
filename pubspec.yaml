@@ -1,4 +1,4 @@
-name: sangeet_music
+name: sangeet
 description: An Open Source Music Player App.
 
 # Prevent accidental publishing to pub.dev.

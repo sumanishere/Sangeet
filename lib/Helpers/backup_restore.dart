@@ -2,8 +2,8 @@
 
 import 'dart:io';
 
-import 'package:sangeet_music/CustomWidgets/snackbar.dart';
-import 'package:sangeet_music/Helpers/picker.dart';
+import 'package:sangeet/CustomWidgets/snackbar.dart';
+import 'package:sangeet/Helpers/picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_archive/flutter_archive.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

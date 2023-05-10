@@ -4,12 +4,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:hive/hive.dart';
-import 'package:sangeet_music/CustomWidgets/on_hover.dart';
-import 'package:sangeet_music/CustomWidgets/search_bar.dart';
-import 'package:sangeet_music/Screens/YouTube/youtube_playlist.dart';
-import 'package:sangeet_music/Screens/YouTube/youtube_search.dart';
-import 'package:sangeet_music/Services/youtube_services.dart';
-import 'package:sangeet_music/Services/yt_music.dart';
+import 'package:sangeet/CustomWidgets/on_hover.dart';
+import 'package:sangeet/CustomWidgets/search_bar.dart';
+import 'package:sangeet/Screens/YouTube/youtube_playlist.dart';
+import 'package:sangeet/Screens/YouTube/youtube_search.dart';
+import 'package:sangeet/Services/youtube_services.dart';
+import 'package:sangeet/Services/yt_music.dart';
 
 bool status = false;
 List searchedList = Hive.box('cache').get('ytHome', defaultValue: []) as List;

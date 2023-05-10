@@ -1,13 +1,13 @@
 //
 
-import 'package:sangeet_music/CustomWidgets/collage.dart';
-import 'package:sangeet_music/CustomWidgets/gradient_containers.dart';
-import 'package:sangeet_music/CustomWidgets/miniplayer.dart';
-import 'package:sangeet_music/CustomWidgets/snackbar.dart';
-import 'package:sangeet_music/CustomWidgets/textinput_dialog.dart';
-import 'package:sangeet_music/Helpers/import_export_playlist.dart';
-import 'package:sangeet_music/Screens/Library/import.dart';
-import 'package:sangeet_music/Screens/Library/liked.dart';
+import 'package:sangeet/CustomWidgets/collage.dart';
+import 'package:sangeet/CustomWidgets/gradient_containers.dart';
+import 'package:sangeet/CustomWidgets/miniplayer.dart';
+import 'package:sangeet/CustomWidgets/snackbar.dart';
+import 'package:sangeet/CustomWidgets/textinput_dialog.dart';
+import 'package:sangeet/Helpers/import_export_playlist.dart';
+import 'package:sangeet/Screens/Library/import.dart';
+import 'package:sangeet/Screens/Library/liked.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';

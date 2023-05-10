@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:hive/hive.dart';
-import 'package:sangeet_music/CustomWidgets/snackbar.dart';
+import 'package:sangeet/CustomWidgets/snackbar.dart';
 
 class ArtistLikeButton extends StatefulWidget {
   final double? size;

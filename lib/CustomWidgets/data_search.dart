@@ -7,10 +7,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import 'package:sangeet_music/CustomWidgets/download_button.dart';
-import 'package:sangeet_music/CustomWidgets/song_tile_trailing_menu.dart';
-import 'package:sangeet_music/Helpers/audio_query.dart';
-import 'package:sangeet_music/Services/player_service.dart';
+import 'package:sangeet/CustomWidgets/download_button.dart';
+import 'package:sangeet/CustomWidgets/song_tile_trailing_menu.dart';
+import 'package:sangeet/Helpers/audio_query.dart';
+import 'package:sangeet/Services/player_service.dart';
 
 class DataSearch extends SearchDelegate {
   final List<SongModel> data;

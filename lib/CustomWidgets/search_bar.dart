@@ -1,5 +1,5 @@
 import 'dart:math';
-import 'package:sangeet_music/Screens/YouTube/youtube_search.dart';
+import 'package:sangeet/Screens/YouTube/youtube_search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';

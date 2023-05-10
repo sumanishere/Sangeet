@@ -59,6 +59,6 @@ class DefaultFirebaseOptions {
     storageBucket: 'sangeet-b4b33.appspot.com',
     iosClientId:
         '938273869324-4jum6vqrp42fidvse6t8ni3unmgp7lq9.apps.googleusercontent.com',
-    iosBundleId: 'com.suman.sangeet_music1150.ios',
+    iosBundleId: 'com.suman.sangeet1150.ios',
   );
 }

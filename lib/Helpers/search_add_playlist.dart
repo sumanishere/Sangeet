@@ -2,11 +2,11 @@
 
 import 'dart:convert';
 
-import 'package:sangeet_music/APIs/api.dart';
-import 'package:sangeet_music/APIs/spotify_api.dart';
-import 'package:sangeet_music/CustomWidgets/gradient_containers.dart';
-import 'package:sangeet_music/Helpers/playlist.dart';
-import 'package:sangeet_music/Services/youtube_services.dart';
+import 'package:sangeet/APIs/api.dart';
+import 'package:sangeet/APIs/spotify_api.dart';
+import 'package:sangeet/CustomWidgets/gradient_containers.dart';
+import 'package:sangeet/Helpers/playlist.dart';
+import 'package:sangeet/Services/youtube_services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:http/http.dart';
