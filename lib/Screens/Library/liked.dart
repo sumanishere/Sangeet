@@ -1,5 +1,3 @@
-//
-
 import 'package:sangeet/CustomWidgets/collage.dart';
 import 'package:sangeet/CustomWidgets/custom_physics.dart';
 import 'package:sangeet/CustomWidgets/data_search.dart';

@@ -1,5 +1,3 @@
-//
-
 import 'package:sangeet/APIs/spotify_api.dart';
 import 'package:sangeet/CustomWidgets/gradient_containers.dart';
 import 'package:sangeet/CustomWidgets/miniplayer.dart';

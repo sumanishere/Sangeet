@@ -1,55 +1,110 @@
 import 'dart:convert';
-
 import 'package:audiotagger/audiotagger.dart';
 import 'package:audiotagger/models/tag.dart';
-import 'package:flutter_lyric/lyric_helper.dart';
-import 'package:flutter_lyric/lyric_parser/lyrics_parse.dart';
-import 'package:flutter_lyric/lyric_parser/parser_lrc.dart';
-import 'package:flutter_lyric/lyric_parser/parser_qrc.dart';
-import 'package:flutter_lyric/lyric_parser/parser_smart.dart';
-import 'package:flutter_lyric/lyric_ui/lyric_ui.dart';
-import 'package:flutter_lyric/lyric_ui/ui_netease.dart';
-import 'package:flutter_lyric/lyrics_log.dart';
-import 'package:flutter_lyric/lyrics_model_builder.dart';
-import 'package:flutter_lyric/lyrics_reader.dart';
-import 'package:flutter_lyric/lyrics_reader_model.dart';
-import 'package:flutter_lyric/lyrics_reader_paint.dart';
-import 'package:flutter_lyric/lyrics_reader_widget.dart';
 import 'package:http/http.dart';
+import 'package:logging/logging.dart';
 
 // ignore: avoid_classes_with_only_static_members
 class Lyrics {
-  static Future<String> getLyrics({
+  static Future<Map> getLyrics({
     required String id,
     required String title,
     required String artist,
     required bool saavnHas,
   }) async {
-    String lyrics = '';
-    if (saavnHas) {
-      lyrics = await getSaavnLyrics(id);
-    } else {
-      lyrics = await getMusixMatchLyrics(title: title, artist: artist);
-      if (lyrics == '') {
-        lyrics = await getGoogleLyrics(title: title, artist: artist);
+    final Map result = {
+      'lyrics': '',
+      'type': 'lrc',
+    };
+
+    // Logger.root.info('Getting Synced Lyrics');
+    // final res = await getSpotifyLyrics('6epn3r7S14KUqlReYr77hA');
+    // result['lyrics'] = res['lyrics'];
+    // result['type'] = res['type'];
+    if (result['lyrics'] == '') {
+      Logger.root.info('Synced Lyrics, not found. Getting text lyrics');
+      if (saavnHas) {
+        Logger.root.info('Getting Lyrics from Saavn');
+        result['lyrics'] = await getSaavnLyrics(id);
+        result['type'] = 'text';
+        if (result['lyrics'] == '') {
+          final res = await getLyrics(
+            id: id,
+            title: title,
+            artist: artist,
+            saavnHas: false,
+          );
+          result['lyrics'] = res['lyrics'];
+          result['type'] = res['type'];
+        }
+      } else {
+        Logger.root
+            .info('Lyrics not available on Saavn, finding on Musixmatch');
+        result['lyrics'] =
+            await getMusixMatchLyrics(title: title, artist: artist);
+        result['type'] = 'text';
+        if (result['lyrics'] == '') {
+          Logger.root
+              .info('Lyrics not found on Musixmatch, searching on Google');
+          result['lyrics'] =
+              await getGoogleLyrics(title: title, artist: artist);
+          result['type'] = 'text';
+        }
       }
     }
-    return lyrics;
+    return result;
   }
 
   static Future<String> getSaavnLyrics(String id) async {
-    final Uri lyricsUrl = Uri.https(
-      'www.jiosaavn.com',
-      '/api.php?__call=lyrics.getLyrics&lyrics_id=$id&ctx=web6dot0&api_version=4&_format=json',
-    );
-    final Response res =
-        await get(lyricsUrl, headers: {'Accept': 'application/json'});
+    try {
+      final Uri lyricsUrl = Uri.https(
+        'www.jiosaavn.com',
+        '/api.php?__call=lyrics.getLyrics&lyrics_id=$id&ctx=web6dot0&api_version=4&_format=json',
+      );
+      final Response res =
+          await get(lyricsUrl, headers: {'Accept': 'application/json'});
 
-    final List<String> rawLyrics = res.body.split('-->');
-    final fetchedLyrics = json.decode(rawLyrics[1]);
-    final String lyrics =
-        fetchedLyrics['lyrics'].toString().replaceAll('<br>', '\n');
-    return lyrics;
+      final List<String> rawLyrics = res.body.split('-->');
+      Map fetchedLyrics = {};
+      if (rawLyrics.length > 1) {
+        fetchedLyrics = json.decode(rawLyrics[1]) as Map;
+      } else {
+        fetchedLyrics = json.decode(rawLyrics[0]) as Map;
+      }
+      final String lyrics =
+          fetchedLyrics['lyrics'].toString().replaceAll('<br>', '\n');
+      return lyrics;
+    } catch (e) {
+      Logger.root.severe('Error in getSaavnLyrics', e);
+      return '';
+    }
+  }
+
+  static Future<Map> getSpotifyLyrics(String trackId) async {
+    final result = {
+      'lyrics': '',
+      'type': 'lrc',
+    };
+    try {
+      final Uri lyricsUrl = Uri.https('spotify-lyric-api.herokuapp.com', '/', {
+        'trackid': trackId,
+        'format': 'lrc',
+      });
+      final Response res =
+          await get(lyricsUrl, headers: {'Accept': 'application/json'});
+
+      if (res.statusCode == 200) {
+        final Map lyricsData = await json.decode(res.body) as Map;
+        if (lyricsData['error'] == false) {
+          final List lrc = await lyricsData['lines'] as List;
+          result['lyrics'] = lrc.toString();
+        }
+      }
+      return result;
+    } catch (e) {
+      Logger.root.severe('Error in getSpotifyLyrics', e);
+      return result;
+    }
   }
 
   static Future<String> getGoogleLyrics({
@@ -124,6 +179,7 @@ class Lyrics {
   }
 
   static Future<String> scrapLink(String unencodedPath) async {
+    Logger.root.info('Trying to scrap lyrics from $unencodedPath');
     const String authority = 'www.musixmatch.com';
     final Response res = await get(Uri.https(authority, unencodedPath));
     if (res.statusCode != 200) return '';
@@ -139,8 +195,14 @@ class Lyrics {
     required String title,
     required String artist,
   }) async {
-    final String link = await getLyricsLink(title, artist);
-    final String lyrics = await scrapLink(link);
-    return lyrics;
+    try {
+      final String link = await getLyricsLink(title, artist);
+      Logger.root.info('Found Musixmatch Lyrics Link: $link');
+      final String lyrics = await scrapLink(link);
+      return lyrics;
+    } catch (e) {
+      Logger.root.severe('Error in getMusixMatchLyrics', e);
+      return '';
+    }
   }
 }

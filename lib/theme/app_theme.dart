@@ -1,8 +1,6 @@
-//
-
-import 'package:sangeet/Helpers/config.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:sangeet/Helpers/config.dart';
 
 // ignore: avoid_classes_with_only_static_members
 class AppTheme {

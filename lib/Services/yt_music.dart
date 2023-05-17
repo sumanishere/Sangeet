@@ -26,6 +26,7 @@ class YtMusicService {
     'get_channel': 'channel',
     'get_lyrics': 'lyrics',
     'search_suggestions': 'music/get_search_suggestions',
+    'next': 'next'
   };
   static const filters = [
     'albums',
