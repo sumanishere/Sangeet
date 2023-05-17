@@ -58,10 +58,17 @@ dependencies:
   youtube_explode_dart: ^1.12.3
 
 dev_dependencies:
+  flutter_launcher_icons: ^0.13.1
   flutter_test:
     sdk: flutter
   lint: ^2.0.1
   msix: ^3.7.0
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/ic_launcher.png"
+  min_sdk_android: 21
 
 flutter:
   uses-material-design: true
