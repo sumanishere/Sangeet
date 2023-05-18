@@ -4,7 +4,7 @@ import 'package:http/http.dart';
 import 'package:logging/logging.dart';
 
 class GitHub {
-  static String repo = 'Sangwan5688/BlackHole';
+  static String repo = 'sumanishere/Sangeet';
   static String baseUrl = 'api.github.com';
   static Map<String, String> headers = {};
   static Map<String, String> endpoints = {
