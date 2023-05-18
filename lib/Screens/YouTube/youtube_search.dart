@@ -71,14 +71,6 @@ class _YouTubeSearchPageState extends State<YouTubeSearchPage> {
           });
         });
       }
-      // YouTubeServices()
-      //     .fetchSearchResults(query == '' ? widget.query : query)
-      //     .then((value) {
-      //   setState(() {
-      //     searchedList = value;
-      //     fetched = true;
-      //   });
-      // });
     }
     return GradientContainer(
       child: SafeArea(

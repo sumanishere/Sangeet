@@ -12,7 +12,6 @@ class SpotifyApi {
     'playlist-read-collaborative',
   ];
 
-  /// You can signup for spotify developer account and get your own clientID and clientSecret incase you don't want to use these
   final String clientID = 'd2c86a63ebb64aa0972643577e496ecb';
   final String clientSecret = 'e744a99d3a834a2f93dbecfd33891a08';
   final String redirectUrl = 'app://sangeet/auth';
