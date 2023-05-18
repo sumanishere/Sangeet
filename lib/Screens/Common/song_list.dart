@@ -1,3 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:logging/logging.dart';
 import 'package:sangeet/APIs/api.dart';
 import 'package:sangeet/CustomWidgets/bouncy_playlist_header_scroll_view.dart';
 import 'package:sangeet/CustomWidgets/copy_clipboard.dart';
@@ -11,10 +15,6 @@ import 'package:sangeet/CustomWidgets/song_tile_trailing_menu.dart';
 import 'package:sangeet/Helpers/extensions.dart';
 import 'package:sangeet/Helpers/image_resolution_modifier.dart';
 import 'package:sangeet/Services/player_service.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:logging/logging.dart';
 import 'package:share_plus/share_plus.dart';
 
 class SongsListPage extends StatefulWidget {

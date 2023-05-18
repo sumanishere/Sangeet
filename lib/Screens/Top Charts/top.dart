@@ -1,4 +1,8 @@
 import 'package:app_links/app_links.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:sangeet/APIs/spotify_api.dart';
 import 'package:sangeet/CustomWidgets/custom_physics.dart';
 import 'package:sangeet/CustomWidgets/empty_screen.dart';
@@ -7,10 +11,6 @@ import 'package:sangeet/Helpers/spotify_helper.dart';
 // import 'package:sangeet/Helpers/countrycodes.dart';
 import 'package:sangeet/Screens/Search/search.dart';
 import 'package:sangeet/Screens/Settings/setting.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 List localSongs = [];

@@ -1,5 +1,7 @@
-//
-
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:logging/logging.dart';
 import 'package:sangeet/CustomWidgets/bouncy_sliver_scroll_view.dart';
 import 'package:sangeet/CustomWidgets/copy_clipboard.dart';
 import 'package:sangeet/CustomWidgets/gradient_containers.dart';
@@ -8,10 +10,6 @@ import 'package:sangeet/CustomWidgets/song_tile_trailing_menu.dart';
 import 'package:sangeet/Services/player_service.dart';
 import 'package:sangeet/Services/youtube_services.dart';
 import 'package:sangeet/Services/yt_music.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:logging/logging.dart';
 
 class YouTubeArtist extends StatefulWidget {
   final String artistId;

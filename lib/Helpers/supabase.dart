@@ -1,11 +1,9 @@
-//
-
 import 'package:supabase/supabase.dart';
 
 class SupaBase {
   final SupabaseClient client = SupabaseClient(
-    'https://vuakihfddljlzovzbdaf.supabase.co',
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYyNzU1MTk3MywiZXhwIjoxOTQzMTI3OTczfQ.4PzxpfIk81ZvLtUOe0muHVGiZLr-dMK7BLyFsUcrVtc',
+    'https://ffdupvjhneqtjvftkmfz.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZmZHVwdmpobmVxdGp2ZnRrbWZ6Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY4NDQxNTQ2OCwiZXhwIjoxOTk5OTkxNDY4fQ.Y9Mmhk92c7Cn-zqeY9cHpj_KfJ9sfbDOBYLIoFb97b0',
   );
 
   Future<Map> getUpdate() async {
