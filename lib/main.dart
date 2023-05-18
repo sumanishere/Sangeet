@@ -56,7 +56,7 @@ Future<void> main() async {
 
 Future<void> setOptimalDisplayMode() async {
   await FlutterDisplayMode.setHighRefreshRate();
-  final List<DisplayMode> supported = //chnaged by suman
+  final List<DisplayMode> supported = //changed by suman
       await FlutterDisplayMode.supported; //changed by suman
   final DisplayMode active = await FlutterDisplayMode.active; //changed by suman
 
