@@ -1,35 +1,16 @@
-/*
- *  This file is part of BlackHole (https://github.com/Sangwan5688/BlackHole).
- * 
- * BlackHole is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * BlackHole is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public License
- * along with BlackHole.  If not, see <http://www.gnu.org/licenses/>.
- * 
- * Copyright (c) 2021-2022, Ankit Sangwan
- */
-
-import 'package:blackhole/APIs/api.dart';
-import 'package:blackhole/APIs/spotify_api.dart';
-import 'package:blackhole/Helpers/audio_query.dart';
-import 'package:blackhole/Helpers/spotify_helper.dart';
-import 'package:blackhole/Screens/Common/song_list.dart';
-import 'package:blackhole/Screens/Player/audioplayer.dart';
-import 'package:blackhole/Screens/Search/search.dart';
-import 'package:blackhole/Screens/YouTube/youtube_playlist.dart';
-import 'package:blackhole/Services/player_service.dart';
-import 'package:blackhole/Services/youtube_services.dart';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 import 'package:on_audio_query/on_audio_query.dart';
+import 'package:sangeet/APIs/api.dart';
+import 'package:sangeet/APIs/spotify_api.dart';
+import 'package:sangeet/Helpers/audio_query.dart';
+import 'package:sangeet/Helpers/spotify_helper.dart';
+import 'package:sangeet/Screens/Common/song_list.dart';
+import 'package:sangeet/Screens/Player/audioplayer.dart';
+import 'package:sangeet/Screens/Search/search.dart';
+import 'package:sangeet/Screens/YouTube/youtube_playlist.dart';
+import 'package:sangeet/Services/player_service.dart';
+import 'package:sangeet/Services/youtube_services.dart';
 
 // ignore: avoid_classes_with_only_static_members
 class HandleRoute {

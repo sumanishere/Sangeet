@@ -1,3 +1,16 @@
+import 'dart:io';
+
+import 'package:blackhole/CustomWidgets/add_playlist.dart';
+import 'package:blackhole/CustomWidgets/custom_physics.dart';
+import 'package:blackhole/CustomWidgets/data_search.dart';
+import 'package:blackhole/CustomWidgets/empty_screen.dart';
+import 'package:blackhole/CustomWidgets/gradient_containers.dart';
+import 'package:blackhole/CustomWidgets/miniplayer.dart';
+import 'package:blackhole/CustomWidgets/playlist_head.dart';
+import 'package:blackhole/CustomWidgets/snackbar.dart';
+import 'package:blackhole/Helpers/audio_query.dart';
+import 'package:blackhole/Screens/LocalMusic/localplaylists.dart';
+import 'package:blackhole/Services/player_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -5,17 +18,6 @@ import 'package:hive/hive.dart';
 import 'package:logging/logging.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:sangeet/CustomWidgets/add_playlist.dart';
-import 'package:sangeet/CustomWidgets/custom_physics.dart';
-import 'package:sangeet/CustomWidgets/data_search.dart';
-import 'package:sangeet/CustomWidgets/empty_screen.dart';
-import 'package:sangeet/CustomWidgets/gradient_containers.dart';
-import 'package:sangeet/CustomWidgets/miniplayer.dart';
-import 'package:sangeet/CustomWidgets/playlist_head.dart';
-import 'package:sangeet/CustomWidgets/snackbar.dart';
-import 'package:sangeet/Helpers/audio_query.dart';
-import 'package:sangeet/Screens/LocalMusic/localplaylists.dart';
-import 'package:sangeet/Services/player_service.dart';
 
 class DownloadedSongs extends StatefulWidget {
   final List<SongModel>? cachedSongs;
@@ -40,10 +42,12 @@ class _DownloadedSongsState extends State<DownloadedSongs>
   final Map<String, List<SongModel>> _albums = {};
   final Map<String, List<SongModel>> _artists = {};
   final Map<String, List<SongModel>> _genres = {};
+  final Map<String, List<SongModel>> _folders = {};
 
   final List<String> _sortedAlbumKeysList = [];
   final List<String> _sortedArtistKeysList = [];
   final List<String> _sortedGenreKeysList = [];
+  final List<String> _sortedFolderKeysList = [];
   // final List<String> _videos = [];
 
   bool added = false;
@@ -81,7 +85,7 @@ class _DownloadedSongsState extends State<DownloadedSongs>
   @override
   void initState() {
     _tcontroller =
-        TabController(length: widget.showPlaylists ? 5 : 4, vsync: this);
+        TabController(length: widget.showPlaylists ? 6 : 5, vsync: this);
     getData();
     super.initState();
   }
@@ -104,8 +108,10 @@ class _DownloadedSongsState extends State<DownloadedSongs>
       Logger.root.info('Requesting permission to access local songs');
       await offlineAudioQuery.requestPermission();
       tempPath ??= (await getTemporaryDirectory()).path;
-      Logger.root.info('Getting local playlists');
-      playlistDetails = await offlineAudioQuery.getPlaylists();
+      if (Platform.isAndroid) {
+        Logger.root.info('Getting local playlists');
+        playlistDetails = await offlineAudioQuery.getPlaylists();
+      }
       if (widget.cachedSongs == null) {
         Logger.root.info('Cache empty, calling audioQuery');
         final receivedSongs = await offlineAudioQuery.getSongs(
@@ -153,11 +159,22 @@ class _DownloadedSongsState extends State<DownloadedSongs>
             _genres[_songs[i].genre ?? 'Unknown'] = [_songs[i]];
             _sortedGenreKeysList.add(_songs[i].genre ?? 'Unknown');
           }
+
+          final tempPath = _songs[i].data.split('/');
+          tempPath.removeLast();
+          final dirPath = tempPath.join('/');
+
+          if (_folders.containsKey(dirPath)) {
+            _folders[dirPath]!.add(_songs[i]);
+          } else {
+            _folders[dirPath] = [_songs[i]];
+            _sortedFolderKeysList.add(dirPath);
+          }
         } catch (e) {
           Logger.root.severe('Error in sorting songs', e);
         }
       }
-      Logger.root.info('albums and artists set');
+      Logger.root.info('albums, artists, genre & folders set');
     } catch (e) {
       Logger.root.severe('Error in getData', e);
       added = true;
@@ -217,7 +234,7 @@ class _DownloadedSongsState extends State<DownloadedSongs>
         children: [
           Expanded(
             child: DefaultTabController(
-              length: widget.showPlaylists ? 5 : 4,
+              length: widget.showPlaylists ? 6 : 5,
               child: Scaffold(
                 backgroundColor: Colors.transparent,
                 appBar: AppBar(
@@ -240,6 +257,9 @@ class _DownloadedSongsState extends State<DownloadedSongs>
                       ),
                       Tab(
                         text: AppLocalizations.of(context)!.genres,
+                      ),
+                      Tab(
+                        text: AppLocalizations.of(context)!.folders,
                       ),
                       if (widget.showPlaylists)
                         Tab(
@@ -392,6 +412,11 @@ class _DownloadedSongsState extends State<DownloadedSongs>
                           AlbumsTab(
                             albums: _genres,
                             albumsList: _sortedGenreKeysList,
+                            tempPath: tempPath!,
+                          ),
+                          AlbumsTab(
+                            albums: _folders,
+                            albumsList: _sortedFolderKeysList,
                             tempPath: tempPath!,
                           ),
                           if (widget.showPlaylists)
