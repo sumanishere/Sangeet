@@ -1,11 +1,11 @@
-import 'package:sangeet/CustomWidgets/gradient_containers.dart';
-import 'package:sangeet/Helpers/backup_restore.dart';
-import 'package:sangeet/Helpers/config.dart';
-import 'package:sangeet/Helpers/supabase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
+import 'package:sangeet/CustomWidgets/gradient_containers.dart';
+import 'package:sangeet/Helpers/backup_restore.dart';
+import 'package:sangeet/Helpers/config.dart';
+import 'package:sangeet/Helpers/supabase.dart';
 import 'package:uuid/uuid.dart';
 
 class AuthScreen extends StatefulWidget {

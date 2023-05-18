@@ -1,5 +1,6 @@
-//
-
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:sangeet/APIs/api.dart';
 import 'package:sangeet/CustomWidgets/artist_like_button.dart';
 import 'package:sangeet/CustomWidgets/bouncy_sliver_scroll_view.dart';
@@ -16,9 +17,6 @@ import 'package:sangeet/CustomWidgets/song_tile_trailing_menu.dart';
 import 'package:sangeet/Helpers/image_resolution_modifier.dart';
 import 'package:sangeet/Screens/Common/song_list.dart';
 import 'package:sangeet/Services/player_service.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:share_plus/share_plus.dart';
 
 class ArtistSearchPage extends StatefulWidget {
@@ -168,10 +166,11 @@ class _ArtistSearchPageState extends State<ArtistSearchPage> {
                                                   Icon(
                                                     Icons.play_arrow_rounded,
                                                     color: Theme.of(context)
-                                                                .brightness ==
-                                                            Brightness.dark
-                                                        ? Colors.white
-                                                        : Colors.black,
+                                                                .colorScheme
+                                                                .secondary ==
+                                                            Colors.white
+                                                        ? Colors.black
+                                                        : Colors.white,
                                                     size: 26.0,
                                                   ),
                                                   const SizedBox(width: 5.0),
@@ -185,10 +184,11 @@ class _ArtistSearchPageState extends State<ArtistSearchPage> {
                                                           FontWeight.bold,
                                                       fontSize: 18.0,
                                                       color: Theme.of(context)
-                                                                  .brightness ==
-                                                              Brightness.dark
-                                                          ? Colors.white
-                                                          : Colors.black,
+                                                                  .colorScheme
+                                                                  .secondary ==
+                                                              Colors.white
+                                                          ? Colors.black
+                                                          : Colors.white,
                                                     ),
                                                     textAlign: TextAlign.center,
                                                   ),
@@ -269,11 +269,10 @@ class _ArtistSearchPageState extends State<ArtistSearchPage> {
                                                   Icon(
                                                     Icons.podcasts_rounded,
                                                     color: Theme.of(context)
-                                                                .colorScheme
-                                                                .secondary ==
-                                                            Colors.white
-                                                        ? Colors.black
-                                                        : Colors.white,
+                                                                .brightness ==
+                                                            Brightness.dark
+                                                        ? Colors.white
+                                                        : Colors.black,
                                                     size: 26.0,
                                                   ),
                                                   const SizedBox(width: 5.0),
@@ -287,11 +286,10 @@ class _ArtistSearchPageState extends State<ArtistSearchPage> {
                                                           FontWeight.bold,
                                                       fontSize: 18.0,
                                                       color: Theme.of(context)
-                                                                  .colorScheme
-                                                                  .secondary ==
-                                                              Colors.white
-                                                          ? Colors.black
-                                                          : Colors.white,
+                                                                  .brightness ==
+                                                              Brightness.dark
+                                                          ? Colors.white
+                                                          : Colors.black,
                                                     ),
                                                     textAlign: TextAlign.center,
                                                   ),

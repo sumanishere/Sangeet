@@ -2,6 +2,17 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:math';
 import 'dart:ui' as ui;
+
+import 'package:audio_service/audio_service.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flip_card/flip_card.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:get_it/get_it.dart';
+import 'package:hive/hive.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:sangeet/CustomWidgets/add_playlist.dart';
 import 'package:sangeet/CustomWidgets/animated_text.dart';
 import 'package:sangeet/CustomWidgets/copy_clipboard.dart';
@@ -20,16 +31,6 @@ import 'package:sangeet/Helpers/lyrics.dart';
 import 'package:sangeet/Helpers/mediaitem_converter.dart';
 import 'package:sangeet/Screens/Common/song_list.dart';
 import 'package:sangeet/Screens/Search/albums.dart';
-import 'package:audio_service/audio_service.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flip_card/flip_card.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:get_it/get_it.dart';
-import 'package:hive/hive.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -174,7 +175,7 @@ class _PlayScreenState extends State<PlayScreen> {
   }
 
   String format(String msg) {
-    return '${msg[0].toUpperCase()}${msg.substring(1)}: '.replaceAll('_', ' ');
+    return '${msg[0].toUpperCase()}${msg.substring(1)}'.replaceAll('_', ' ');
   }
 
   @override
@@ -293,32 +294,37 @@ class _PlayScreenState extends State<PlayScreen> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: details.keys.map((e) {
-                                    return SelectableText.rich(
-                                      TextSpan(
-                                        children: <TextSpan>[
-                                          TextSpan(
-                                            text: format(
-                                              e.toString(),
+                                    return Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 10),
+                                      child: SelectableText.rich(
+                                        TextSpan(
+                                          children: <TextSpan>[
+                                            TextSpan(
+                                              text: format(
+                                                '$e\n',
+                                              ),
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.normal,
+                                                fontSize: 12,
+                                                color: Theme.of(context)
+                                                    .textTheme
+                                                    .bodySmall!
+                                                    .color,
+                                              ),
                                             ),
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              color: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyLarge!
-                                                  .color,
+                                            TextSpan(
+                                              text: '${details[e]}',
+                                              style: const TextStyle(
+                                                fontWeight: FontWeight.normal,
+                                              ),
                                             ),
-                                          ),
-                                          TextSpan(
-                                            text: details[e].toString(),
-                                            style: const TextStyle(
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
+                                        showCursor: true,
+                                        cursorColor: Colors.black,
+                                        cursorRadius: const Radius.circular(5),
                                       ),
-                                      showCursor: true,
-                                      cursorColor: Colors.black,
-                                      cursorRadius: const Radius.circular(5),
                                     );
                                   }).toList(),
                                 ),
@@ -1119,6 +1125,7 @@ class NowPlayingStream extends StatelessWidget {
                         ),
                       Card(
                         elevation: 5,
+                        margin: EdgeInsets.zero,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(7.0),
                         ),
@@ -1248,8 +1255,8 @@ class _ArtWorkWidgetState extends State<ArtWorkWidget> {
                           widget.mediaItem.extras?['has_lyrics'] == 'true',
                       title: widget.mediaItem.title,
                       artist: widget.mediaItem.artist.toString(),
-                    ).then((value) {
-                      lyrics['lyrics'] = value;
+                    ).then((Map value) {
+                      lyrics['lyrics'] = value['lyrics'];
                       lyrics['id'] = widget.mediaItem.id;
                       done.value = true;
                     });
@@ -1265,8 +1272,8 @@ class _ArtWorkWidgetState extends State<ArtWorkWidget> {
                   saavnHas: widget.mediaItem.extras?['has_lyrics'] == 'true',
                   title: widget.mediaItem.title,
                   artist: widget.mediaItem.artist.toString(),
-                ).then((value) {
-                  lyrics['lyrics'] = value;
+                ).then((Map value) {
+                  lyrics['lyrics'] = value['lyrics'];
                   lyrics['id'] = widget.mediaItem.id;
                   done.value = true;
                 });
@@ -1720,44 +1727,52 @@ class _ArtWorkWidgetState extends State<ArtWorkWidget> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: details.keys.map((e) {
-                                                  return SelectableText.rich(
-                                                    TextSpan(
-                                                      children: <TextSpan>[
-                                                        TextSpan(
-                                                          text:
-                                                              '${e[0].toUpperCase()}${e.substring(1)}: '
-                                                                  .replaceAll(
-                                                            '_',
-                                                            ' ',
-                                                          ),
-                                                          style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            color: Theme.of(
-                                                              context,
-                                                            )
-                                                                .textTheme
-                                                                .bodyLarge!
-                                                                .color,
-                                                          ),
-                                                        ),
-                                                        TextSpan(
-                                                          text: details[e]
-                                                              .toString(),
-                                                          style:
-                                                              const TextStyle(
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .normal,
-                                                          ),
-                                                        ),
-                                                      ],
+                                                  return Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                      bottom: 10.0,
                                                     ),
-                                                    showCursor: true,
-                                                    cursorColor: Colors.black,
-                                                    cursorRadius:
-                                                        const Radius.circular(
-                                                      5,
+                                                    child: SelectableText.rich(
+                                                      TextSpan(
+                                                        children: <TextSpan>[
+                                                          TextSpan(
+                                                            text:
+                                                                '${e[0].toUpperCase()}${e.substring(1)}\n'
+                                                                    .replaceAll(
+                                                              '_',
+                                                              ' ',
+                                                            ),
+                                                            style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .normal,
+                                                              fontSize: 12,
+                                                              color: Theme.of(
+                                                                context,
+                                                              )
+                                                                  .textTheme
+                                                                  .bodySmall!
+                                                                  .color,
+                                                            ),
+                                                          ),
+                                                          TextSpan(
+                                                            text: details[e]
+                                                                .toString(),
+                                                            style:
+                                                                const TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .normal,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      showCursor: true,
+                                                      cursorColor: Colors.black,
+                                                      cursorRadius:
+                                                          const Radius.circular(
+                                                        5,
+                                                      ),
                                                     ),
                                                   );
                                                 }).toList(),
@@ -1868,8 +1883,9 @@ class NameNControls extends StatelessWidget {
     final double nowplayingBoxHeight = min(70, height * 0.15);
     // height > 500 ? height * 0.4 : height * 0.15;
     // final double minNowplayingBoxHeight = height * 0.15;
-    final bool useFullScreenGradient = Hive.box('settings')
-        .get('useFullScreenGradient', defaultValue: false) as bool;
+    final String gradientType = Hive.box('settings')
+        .get('gradientType', defaultValue: 'halfDark')
+        .toString();
     final List<String> artists = mediaItem.artist.toString().split(', ');
     return SizedBox(
       width: width,
@@ -1988,7 +2004,9 @@ class NameNControls extends StatelessWidget {
 
                           /// Subtitle container
                           AnimatedText(
-                            text: (mediaItem.album ?? '').isEmpty
+                            text: ((mediaItem.album ?? '').isEmpty ||
+                                    ((mediaItem.album ?? '') ==
+                                        (mediaItem.artist ?? '')))
                                 ? '${(mediaItem.artist ?? "").isEmpty ? "Unknown" : mediaItem.artist}'
                                 : '${(mediaItem.artist ?? "").isEmpty ? "Unknown" : mediaItem.artist} • ${mediaItem.album}',
                             pauseAfterRound: const Duration(seconds: 3),
@@ -2174,7 +2192,7 @@ class NameNControls extends StatelessWidget {
             margin: EdgeInsets.zero,
             padding: EdgeInsets.zero,
             boxShadow: const [],
-            color: useFullScreenGradient
+            color: ['fullLight', 'fullMix'].contains(gradientType)
                 ? Theme.of(context).brightness == Brightness.dark
                     ? const Color.fromRGBO(0, 0, 0, 0.05)
                     : const Color.fromRGBO(255, 255, 255, 0.05)

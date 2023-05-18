@@ -1,3 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:hive/hive.dart';
 import 'package:sangeet/APIs/api.dart';
 import 'package:sangeet/CustomWidgets/copy_clipboard.dart';
 import 'package:sangeet/CustomWidgets/download_button.dart';
@@ -12,10 +16,6 @@ import 'package:sangeet/Screens/Common/song_list.dart';
 import 'package:sangeet/Screens/Search/albums.dart';
 import 'package:sangeet/Screens/Search/artists.dart';
 import 'package:sangeet/Services/player_service.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:hive/hive.dart';
 
 class SearchPage extends StatefulWidget {
   final String query;
@@ -144,6 +144,7 @@ class _SearchPageState extends State<SearchPage> {
                       ? SingleChildScrollView(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 15,
+                            vertical: 10.0,
                           ),
                           physics: const BouncingScrollPhysics(),
                           child: Column(
@@ -191,6 +192,12 @@ class _SearchPageState extends State<SearchPage> {
                                                     .toString()
                                                     .trim();
                                                 controller.text = query;
+                                                controller.selection =
+                                                    TextSelection.fromPosition(
+                                                  TextPosition(
+                                                    offset: query.length,
+                                                  ),
+                                                );
                                                 status = false;
                                                 fromHome = false;
                                                 searchedData = {};
@@ -270,6 +277,14 @@ class _SearchPageState extends State<SearchPage> {
                                                               .trim();
                                                           controller.text =
                                                               query;
+                                                          controller.selection =
+                                                              TextSelection
+                                                                  .fromPosition(
+                                                            TextPosition(
+                                                              offset:
+                                                                  query.length,
+                                                            ),
+                                                          );
                                                           status = false;
                                                           fromHome = false;
                                                           searchedData = {};
