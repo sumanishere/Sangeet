@@ -1,5 +1,9 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:hive/hive.dart';
 import 'package:sangeet/APIs/api.dart';
 import 'package:sangeet/CustomWidgets/collage.dart';
 import 'package:sangeet/CustomWidgets/horizontal_albumlist.dart';
@@ -15,10 +19,6 @@ import 'package:sangeet/Screens/Common/song_list.dart';
 import 'package:sangeet/Screens/Library/liked.dart';
 import 'package:sangeet/Screens/Search/artists.dart';
 import 'package:sangeet/Services/player_service.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:hive/hive.dart';
 
 bool fetched = false;
 List preferredLanguage = Hive.box('settings')
@@ -144,32 +144,37 @@ class _SaavnHomePageState extends State<SaavnHomePage>
                     ? const SizedBox()
                     : Column(
                         children: [
-                          Row(
-                            children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(15, 10, 0, 5),
-                                child: Text(
-                                  AppLocalizations.of(context)!.lastSession,
-                                  style: TextStyle(
-                                    color:
-                                        Theme.of(context).colorScheme.secondary,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
+                          GestureDetector(
+                            child: Row(
+                              children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(15, 10, 0, 5),
+                                  child: Text(
+                                    AppLocalizations.of(context)!.lastSession,
+                                    style: TextStyle(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondary,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
+                            onTap: () {
+                              Navigator.pushNamed(context, '/recent');
+                            },
                           ),
                           HorizontalAlbumsListSeparated(
                             songsList: recentList,
                             onTap: (int idx) {
                               PlayerInvoke.init(
-                                songsList: recentList,
-                                index: idx,
+                                songsList: [recentList[idx]],
+                                index: 0,
                                 isOffline: false,
                               );
-                              Navigator.pushNamed(context, '/player');
                             },
                           ),
                         ],
@@ -179,26 +184,34 @@ class _SaavnHomePageState extends State<SaavnHomePage>
                 return (playlistNames.isEmpty ||
                         !(Hive.box('settings')
                             .get('showPlaylist', defaultValue: true) as bool) ||
-                        likedCount() == 0)
+                        (playlistNames.length == 1 &&
+                            playlistNames.first == 'Favorite Songs' &&
+                            likedCount() == 0))
                     ? const SizedBox()
                     : Column(
                         children: [
-                          Row(
-                            children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(15, 10, 0, 5),
-                                child: Text(
-                                  AppLocalizations.of(context)!.yourPlaylists,
-                                  style: TextStyle(
-                                    color:
-                                        Theme.of(context).colorScheme.secondary,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
+                          GestureDetector(
+                            child: Row(
+                              children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(15, 10, 15, 5),
+                                  child: Text(
+                                    AppLocalizations.of(context)!.yourPlaylists,
+                                    style: TextStyle(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondary,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
+                            onTap: () {
+                              Navigator.pushNamed(context, '/playlists');
+                            },
                           ),
                           SizedBox(
                             height: boxSize + 15,
@@ -227,7 +240,7 @@ class _SaavnHomePageState extends State<SaavnHomePage>
                                     : '${playlistDetails[name]['count']} ${AppLocalizations.of(context)!.songs}';
                                 return GestureDetector(
                                   child: SizedBox(
-                                    width: boxSize - 30,
+                                    width: boxSize - 20,
                                     child: HoverBox(
                                       child: (playlistDetails[name] == null ||
                                               playlistDetails[name]
@@ -414,17 +427,114 @@ class _SaavnHomePageState extends State<SaavnHomePage>
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(15, 10, 0, 5),
-                          child: Text(
-                            data['modules'][lists[idx]]?['title']
-                                    ?.toString()
-                                    .unescape() ??
-                                '',
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.secondary,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
+                          padding: const EdgeInsets.fromLTRB(15, 10, 15, 5),
+                          child: Row(
+                            children: [
+                              Text(
+                                data['modules'][lists[idx]]?['title']
+                                        ?.toString()
+                                        .unescape() ??
+                                    '',
+                                style: TextStyle(
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 8,
+                              ),
+                              GestureDetector(
+                                child: Icon(
+                                  Icons.block_rounded,
+                                  color: Theme.of(context).disabledColor,
+                                  size: 18,
+                                ),
+                                onTap: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(15.0),
+                                        ),
+                                        title: Text(
+                                          AppLocalizations.of(
+                                            context,
+                                          )!
+                                              .blacklistHomeSections,
+                                        ),
+                                        content: Text(
+                                          AppLocalizations.of(
+                                            context,
+                                          )!
+                                              .blacklistHomeSectionsConfirm,
+                                        ),
+                                        actions: [
+                                          TextButton(
+                                            style: TextButton.styleFrom(
+                                              foregroundColor: Theme.of(context)
+                                                  .iconTheme
+                                                  .color,
+                                            ),
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text(
+                                              AppLocalizations.of(
+                                                context,
+                                              )!
+                                                  .no,
+                                            ),
+                                          ),
+                                          TextButton(
+                                            style: TextButton.styleFrom(
+                                              foregroundColor: Colors.white,
+                                              backgroundColor: Theme.of(context)
+                                                  .colorScheme
+                                                  .secondary,
+                                            ),
+                                            onPressed: () async {
+                                              Navigator.pop(context);
+                                              blacklistedHomeSections.add(
+                                                data['modules'][lists[idx]]
+                                                        ?['title']
+                                                    ?.toString()
+                                                    .toLowerCase(),
+                                              );
+                                              Hive.box('settings').put(
+                                                'blacklistedHomeSections',
+                                                blacklistedHomeSections,
+                                              );
+                                              setState(() {});
+                                            },
+                                            child: Text(
+                                              AppLocalizations.of(
+                                                context,
+                                              )!
+                                                  .yes,
+                                              style: TextStyle(
+                                                color: Theme.of(context)
+                                                            .colorScheme
+                                                            .secondary ==
+                                                        Colors.white
+                                                    ? Colors.black
+                                                    : null,
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            width: 5,
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
+                            ],
                           ),
                         ),
                         SizedBox(
