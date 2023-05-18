@@ -4,6 +4,7 @@ import 'package:http/http.dart';
 import 'package:logging/logging.dart';
 import 'package:sangeet/Helpers/extensions.dart';
 import 'package:sangeet/Services/ytmusic/nav.dart';
+import 'package:sangeet/Services/ytmusic/playlist.dart';
 
 class YtMusicService {
   static const ytmDomain = 'music.youtube.com';
@@ -26,7 +27,7 @@ class YtMusicService {
     'get_channel': 'channel',
     'get_lyrics': 'lyrics',
     'search_suggestions': 'music/get_search_suggestions',
-    'next': 'next'
+    'next': 'next',
   };
   static const filters = [
     'albums',
@@ -109,7 +110,8 @@ class YtMusicService {
       return json.decode(response.body) as Map;
     } else {
       Logger.root
-          .info('YtMusic returned ${response.statusCode}', response.body);
+          .severe('YtMusic returned ${response.statusCode}', response.body);
+      Logger.root.info('Requested endpoint: $uri');
       return {};
     }
   }
@@ -625,9 +627,10 @@ class YtMusicService {
           'subtitle': subtitle,
           'image': image,
           'perma_url': 'https://www.youtube.com/watch?v=$id',
-          'url': '',
+          'url': 'https://www.youtube.com/watch?v=$id',
           'release_date': '',
           'album_id': '',
+          'expire_at': '0',
         });
       }
       return {
@@ -740,7 +743,7 @@ class YtMusicService {
           'subtitle': subtitle,
           'image': image,
           'perma_url': 'https://www.youtube.com/watch?v=$id',
-          'url': '',
+          'url': 'https://www.youtube.com/watch?v=$id',
           'release_date': '',
           'album_id': '',
         });
@@ -761,6 +764,9 @@ class YtMusicService {
   }
 
   Future<Map<String, dynamic>> getArtistDetails(String id) async {
+    if (headers == null) {
+      await init();
+    }
     String artistId = id;
     if (artistId.startsWith('MPLA')) {
       artistId = artistId.substring(4);
@@ -861,7 +867,7 @@ class YtMusicService {
           'subtitle': subtitle,
           'image': image,
           'perma_url': 'https://www.youtube.com/watch?v=$id',
-          'url': '',
+          'url': 'https://www.youtube.com/watch?v=$id',
           'release_date': '',
           'album_id': '',
         });
@@ -878,6 +884,83 @@ class YtMusicService {
     } catch (e) {
       Logger.root.info('Error in ytmusic getArtistDetails', e);
       return {};
+    }
+  }
+
+  Future<List<String>> getWatchPlaylist({
+    String? videoId,
+    String? playlistId,
+    int limit = 25,
+    bool radio = false,
+    bool shuffle = false,
+  }) async {
+    if (headers == null) {
+      await init();
+    }
+    try {
+      final body = Map.from(context!);
+      body['enablePersistentPlaylistPanel'] = true;
+      body['isAudioOnly'] = true;
+      body['tunerSettingValue'] = 'AUTOMIX_SETTING_NORMAL';
+
+      if (videoId == null && playlistId == null) {
+        return [];
+      }
+      if (videoId != null) {
+        body['videoId'] = videoId;
+        playlistId ??= 'RDAMVM$videoId';
+        if (!(radio || shuffle)) {
+          body['watchEndpointMusicSupportedConfigs'] = {
+            'watchEndpointMusicConfig': {
+              'hasPersistentPlaylistPanel': true,
+              'musicVideoType': 'MUSIC_VIDEO_TYPE_ATV;',
+            }
+          };
+        }
+      }
+      // bool is_playlist = false;
+
+      body['playlistId'] = playlistIdTrimmer(playlistId!);
+      // is_playlist = body['playlistId'].toString().startsWith('PL') ||
+      //     body['playlistId'].toString().startsWith('OLA');
+
+      if (shuffle) body['params'] = 'wAEB8gECKAE%3D';
+      if (radio) body['params'] = 'wAEB';
+      final Map response = await sendRequest(endpoints['next']!, body, headers);
+      final Map results = nav(response, [
+            'contents',
+            'singleColumnMusicWatchNextResultsRenderer',
+            'tabbedRenderer',
+            'watchNextTabbedResultsRenderer',
+            'tabs',
+            0,
+            'tabRenderer',
+            'content',
+            'musicQueueRenderer',
+            'content',
+            'playlistPanelRenderer',
+          ]) as Map? ??
+          {};
+      final playlist = (results['contents'] as List<dynamic>).where(
+        (x) =>
+            nav(x, ['playlistPanelVideoRenderer', ...navigationPlaylistId]) !=
+            null,
+      );
+      int count = 0;
+      final List<String> songResults = [];
+      for (final item in playlist) {
+        if (count > 0) {
+          final String id =
+              nav(item, ['playlistPanelVideoRenderer', 'videoId']).toString();
+          songResults.add(id);
+        } else {
+          count++;
+        }
+      }
+      return songResults;
+    } catch (e) {
+      Logger.root.severe('Error in ytmusic getWatchPlaylist', e);
+      return [];
     }
   }
 }
