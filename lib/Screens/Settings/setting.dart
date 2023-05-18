@@ -1,5 +1,14 @@
 import 'dart:io';
 
+import 'package:device_info_plus/device_info_plus.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:get_it/get_it.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:sangeet/CustomWidgets/copy_clipboard.dart';
 import 'package:sangeet/CustomWidgets/gradient_containers.dart';
 import 'package:sangeet/CustomWidgets/popup.dart';
@@ -15,15 +24,6 @@ import 'package:sangeet/Screens/Settings/player_gradient.dart';
 import 'package:sangeet/Screens/Top%20Songs/top.dart' as top_screen;
 import 'package:sangeet/Services/ext_storage_provider.dart';
 import 'package:sangeet/main.dart';
-import 'package:device_info_plus/device_info_plus.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:get_it/get_it.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:package_info_plus/package_info_plus.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 

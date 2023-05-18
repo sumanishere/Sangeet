@@ -363,7 +363,7 @@ class _PrefScreenState extends State<PrefScreen> {
                                   onTap: () {
                                     showModalBottomSheet(
                                       isDismissible: true,
-                                      backgroundColor: Colors.transparent,
+                                      backgroundColor: Colors.black87,
                                       context: context,
                                       builder: (BuildContext context) {
                                         const Map<String, String> codes =

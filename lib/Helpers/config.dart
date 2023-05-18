@@ -3,7 +3,7 @@ import 'package:hive/hive.dart';
 
 class MyTheme with ChangeNotifier {
   bool _isDark =
-      Hive.box('settings').get('darkMode', defaultValue: true) as bool;
+      Hive.box('settings').get('darkMode', defaultValue: false) as bool;
 
   bool _useSystemTheme =
       Hive.box('settings').get('useSystemTheme', defaultValue: false) as bool;
@@ -116,12 +116,13 @@ class MyTheme with ChangeNotifier {
 
   void refresh() {
     final Box settingsBox = Hive.box('settings');
-    _isDark = settingsBox.get('darkMode', defaultValue: true) as bool;
+    _isDark = settingsBox.get('darkMode', defaultValue: false) as bool;
 
     _useSystemTheme =
         settingsBox.get('useSystemTheme', defaultValue: false) as bool;
 
-    accentColor = settingsBox.get('themeColor', defaultValue: 'Teal') as String;
+    accentColor =
+        settingsBox.get('themeColor', defaultValue: 'Light Blue') as String;
     canvasColor =
         settingsBox.get('canvasColor', defaultValue: 'Grey') as String;
     cardColor = settingsBox.get('cardColor', defaultValue: 'Grey900') as String;
@@ -204,7 +205,9 @@ class MyTheme with ChangeNotifier {
         return Colors.white;
 
       default:
-        return _isDark ? Colors.tealAccent[400]! : Colors.lightBlueAccent[400]!;
+        return _isDark
+            ? Colors.greenAccent[400]!
+            : Colors.lightBlueAccent[400]!;
     }
   }
 
@@ -292,7 +295,9 @@ class MyTheme with ChangeNotifier {
         return Colors.white;
 
       default:
-        return _isDark ? Colors.tealAccent[400]! : Colors.lightBlueAccent[400]!;
+        return _isDark
+            ? Colors.greenAccent[400]!
+            : Colors.lightBlueAccent[400]!;
     }
   }
 
