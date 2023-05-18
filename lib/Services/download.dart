@@ -1,8 +1,5 @@
 import 'dart:io';
 
-import 'package:sangeet/CustomWidgets/snackbar.dart';
-import 'package:sangeet/Helpers/lyrics.dart';
-import 'package:sangeet/Services/ext_storage_provider.dart';
 import 'package:audiotagger/audiotagger.dart';
 import 'package:audiotagger/models/tag.dart';
 import 'package:flutter/foundation.dart';
@@ -14,6 +11,9 @@ import 'package:http/http.dart';
 import 'package:logging/logging.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:sangeet/CustomWidgets/snackbar.dart';
+import 'package:sangeet/Helpers/lyrics.dart';
+import 'package:sangeet/Services/ext_storage_provider.dart';
 
 class Download with ChangeNotifier {
   static final Map<String, Download> _instances = {};
@@ -296,7 +296,7 @@ class Download with ChangeNotifier {
     late String filepath2;
     String? appPath;
     final List<int> bytes = [];
-    String lyrics;
+    String lyrics = '';
     final artname = fileName.replaceAll('.m4a', '.jpg');
     if (!Platform.isWindows) {
       Logger.root.info('Getting App Path for storing image');
@@ -319,9 +319,22 @@ class Download with ChangeNotifier {
     } catch (e) {
       Logger.root
           .info('Error creating files, requesting additional permission');
-      await [
-        Permission.manageExternalStorage,
-      ].request();
+      PermissionStatus status = await Permission.manageExternalStorage.status;
+      if (status.isDenied) {
+        Logger.root.info(
+          'ManageExternalStorage permission is denied, requesting permission',
+        );
+        await [
+          Permission.manageExternalStorage,
+        ].request();
+      }
+      status = await Permission.manageExternalStorage.status;
+      if (status.isPermanentlyDenied) {
+        Logger.root.info(
+          'ManageExternalStorage Request is permanently denied, opening settings',
+        );
+        await openAppSettings();
+      }
 
       Logger.root.info('Retrying to create audio file');
       await File('$dlPath/$fileName')
@@ -389,14 +402,15 @@ class Download with ChangeNotifier {
         await file2.writeAsBytes(bytes2);
         try {
           Logger.root.info('Checking if lyrics required');
-          lyrics = downloadLyrics
-              ? await Lyrics.getLyrics(
-                  id: data['id'].toString(),
-                  title: data['title'].toString(),
-                  artist: data['artist'].toString(),
-                  saavnHas: data['has_lyrics'] == 'true',
-                )
-              : '';
+          if (downloadLyrics) {
+            final Map res = await Lyrics.getLyrics(
+              id: data['id'].toString(),
+              title: data['title'].toString(),
+              artist: data['artist'].toString(),
+              saavnHas: data['has_lyrics'] == 'true',
+            );
+            lyrics = res['lyrics'].toString();
+          }
         } catch (e) {
           Logger.root.severe('Error fetching lyrics: $e');
           lyrics = '';
@@ -448,7 +462,7 @@ class Download with ChangeNotifier {
           genre: data['language'].toString(),
           year: data['year'].toString(),
           lyrics: lyrics,
-          comment: 'Sangeet',
+          comment: 'BlackHole',
         );
         if (Platform.isAndroid) {
           try {
