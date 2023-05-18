@@ -1,4 +1,21 @@
-//
+/*
+ *  This file is part of BlackHole (https://github.com/Sangwan5688/BlackHole).
+ * 
+ * BlackHole is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * BlackHole is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with BlackHole.  If not, see <http://www.gnu.org/licenses/>.
+ * 
+ * Copyright (c) 2021-2022, Ankit Sangwan
+ */
 
 import 'dart:io';
 import 'dart:typed_data';
@@ -28,6 +45,7 @@ class OfflineAudioQuery {
     return audioQuery.querySongs(
       sortType: sortType ?? SongSortType.DATE_ADDED,
       orderType: orderType ?? OrderType.DESC_OR_GREATER,
+      uriType: UriType.EXTERNAL,
       path: path,
     );
   }
@@ -118,11 +136,11 @@ class OfflineAudioQuery {
     required ArtworkType type,
     required String tempPath,
     required String fileName,
-    int size = 200,
+    int size = 500,
     int quality = 100,
-    ArtworkFormat format = ArtworkFormat.JPEG,
+    ArtworkFormat format = ArtworkFormat.PNG,
   }) async {
-    final File file = File('$tempPath/$fileName.jpg');
+    final File file = File('$tempPath/$fileName.png');
 
     if (!await file.exists()) {
       await file.create();
@@ -143,9 +161,9 @@ class OfflineAudioQuery {
     required ArtworkType type,
     required String tempPath,
     required String fileName,
-    int size = 200,
+    int size = 500,
     int quality = 100,
-    ArtworkFormat format = ArtworkFormat.JPEG,
+    ArtworkFormat format = ArtworkFormat.PNG,
     ArtworkType artworkType = ArtworkType.AUDIO,
     BorderRadius? borderRadius,
     Clip clipBehavior = Clip.antiAlias,
