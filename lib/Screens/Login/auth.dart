@@ -177,7 +177,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                       focusedBorder: const UnderlineInputBorder(
                                         borderSide: BorderSide(
                                           width: 1.5,
-                                          color: Colors.black87,
+                                          color: Colors.transparent,
                                         ),
                                       ),
                                       prefixIcon: Icon(

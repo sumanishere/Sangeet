@@ -363,7 +363,7 @@ class _PrefScreenState extends State<PrefScreen> {
                                   onTap: () {
                                     showModalBottomSheet(
                                       isDismissible: true,
-                                      backgroundColor: Colors.black87,
+                                      backgroundColor: Colors.transparent,
                                       context: context,
                                       builder: (BuildContext context) {
                                         const Map<String, String> codes =
@@ -441,7 +441,7 @@ class _PrefScreenState extends State<PrefScreen> {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10.0),
                                       // color: Theme.of(context).accentColor,
-                                      color: Colors.blueAccent[400],
+                                      color: Colors.lightBlueAccent[400],
                                       boxShadow: const [
                                         BoxShadow(
                                           color: Colors.black26,

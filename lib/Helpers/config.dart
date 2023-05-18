@@ -9,7 +9,7 @@ class MyTheme with ChangeNotifier {
       Hive.box('settings').get('useSystemTheme', defaultValue: false) as bool;
 
   String accentColor =
-      Hive.box('settings').get('themeColor', defaultValue: 'Teal') as String;
+      Hive.box('settings').get('themeColor', defaultValue: 'Light Blue') as String;
   String canvasColor =
       Hive.box('settings').get('canvasColor', defaultValue: 'Grey') as String;
   String cardColor =
