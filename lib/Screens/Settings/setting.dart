@@ -17,8 +17,8 @@ import 'package:sangeet/CustomWidgets/textinput_dialog.dart';
 import 'package:sangeet/Helpers/backup_restore.dart';
 import 'package:sangeet/Helpers/config.dart';
 import 'package:sangeet/Helpers/countrycodes.dart';
+import 'package:sangeet/Helpers/github.dart';
 import 'package:sangeet/Helpers/picker.dart';
-import 'package:sangeet/Helpers/supabase.dart';
 import 'package:sangeet/Screens/Home/saavn.dart' as home_screen;
 import 'package:sangeet/Screens/Settings/player_gradient.dart';
 import 'package:sangeet/Screens/Top%20Songs/top.dart' as top_screen;
@@ -107,6 +107,10 @@ class _SettingPageState extends State<SettingPage>
     'preferredMiniButtons',
     defaultValue: ['Like', 'Play/Pause', 'Next'],
   )?.toList() as List;
+  List<int> preferredCompactNotificationButtons = Hive.box('settings').get(
+    'preferredCompactNotificationButtons',
+    defaultValue: [1, 2, 3],
+  ) as List<int>;
   final ValueNotifier<List> sectionsToShow = ValueNotifier<List>(
     Hive.box('settings').get(
       'sectionsToShow',
@@ -1514,7 +1518,200 @@ class _SettingPageState extends State<SettingPage>
                             );
                           },
                         ),
-
+                        ListTile(
+                          title: Text(
+                            AppLocalizations.of(
+                              context,
+                            )!
+                                .compactNotificationButtons,
+                          ),
+                          subtitle: Text(
+                            AppLocalizations.of(
+                              context,
+                            )!
+                                .compactNotificationButtonsSub,
+                          ),
+                          dense: true,
+                          onTap: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                final Set<int> checked = {
+                                  ...preferredCompactNotificationButtons
+                                };
+                                final List<Map> buttons = [
+                                  {
+                                    'name': 'Like',
+                                    'index': 0,
+                                  },
+                                  {
+                                    'name': 'Previous',
+                                    'index': 1,
+                                  },
+                                  {
+                                    'name': 'Play/Pause',
+                                    'index': 2,
+                                  },
+                                  {
+                                    'name': 'Next',
+                                    'index': 3,
+                                  },
+                                  {
+                                    'name': 'Stop',
+                                    'index': 4,
+                                  },
+                                ];
+                                return StatefulBuilder(
+                                  builder: (
+                                    BuildContext context,
+                                    StateSetter setStt,
+                                  ) {
+                                    return AlertDialog(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(
+                                          15.0,
+                                        ),
+                                      ),
+                                      content: SizedBox(
+                                        width: 500,
+                                        child: ListView(
+                                          physics:
+                                              const BouncingScrollPhysics(),
+                                          shrinkWrap: true,
+                                          padding: const EdgeInsets.fromLTRB(
+                                            0,
+                                            10,
+                                            0,
+                                            10,
+                                          ),
+                                          children: [
+                                            Center(
+                                              child: Text(
+                                                AppLocalizations.of(
+                                                  context,
+                                                )!
+                                                    .compactNotificationButtonsHeader,
+                                              ),
+                                            ),
+                                            ...buttons.map((value) {
+                                              return CheckboxListTile(
+                                                dense: true,
+                                                contentPadding:
+                                                    const EdgeInsets.only(
+                                                  left: 16.0,
+                                                ),
+                                                activeColor: Theme.of(context)
+                                                    .colorScheme
+                                                    .secondary,
+                                                checkColor: Theme.of(
+                                                          context,
+                                                        )
+                                                            .colorScheme
+                                                            .secondary ==
+                                                        Colors.white
+                                                    ? Colors.black
+                                                    : null,
+                                                value: checked.contains(
+                                                  value['index'] as int,
+                                                ),
+                                                title: Text(
+                                                  value['name'] as String,
+                                                ),
+                                                onChanged: (bool? isChecked) {
+                                                  setStt(
+                                                    () {
+                                                      if (isChecked!) {
+                                                        while (checked.length >=
+                                                            3) {
+                                                          checked.remove(
+                                                            checked.first,
+                                                          );
+                                                        }
+                                                        checked.add(
+                                                          value['index'] as int,
+                                                        );
+                                                      } else {
+                                                        checked.removeWhere(
+                                                          (int element) =>
+                                                              element ==
+                                                              value['index'],
+                                                        );
+                                                      }
+                                                    },
+                                                  );
+                                                },
+                                              );
+                                            })
+                                          ],
+                                        ),
+                                      ),
+                                      actions: [
+                                        TextButton(
+                                          style: TextButton.styleFrom(
+                                            foregroundColor:
+                                                Theme.of(context).brightness ==
+                                                        Brightness.dark
+                                                    ? Colors.white
+                                                    : Colors.grey[700],
+                                          ),
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: Text(
+                                            AppLocalizations.of(
+                                              context,
+                                            )!
+                                                .cancel,
+                                          ),
+                                        ),
+                                        TextButton(
+                                          style: TextButton.styleFrom(
+                                            foregroundColor: Theme.of(context)
+                                                        .colorScheme
+                                                        .secondary ==
+                                                    Colors.white
+                                                ? Colors.black
+                                                : null,
+                                            backgroundColor: Theme.of(context)
+                                                .colorScheme
+                                                .secondary,
+                                          ),
+                                          onPressed: () {
+                                            setState(
+                                              () {
+                                                while (checked.length > 3) {
+                                                  checked.remove(
+                                                    checked.first,
+                                                  );
+                                                }
+                                                preferredCompactNotificationButtons =
+                                                    checked.toList()..sort();
+                                                Navigator.pop(context);
+                                                Hive.box('settings').put(
+                                                  'preferredCompactNotificationButtons',
+                                                  preferredCompactNotificationButtons,
+                                                );
+                                              },
+                                            );
+                                          },
+                                          child: Text(
+                                            AppLocalizations.of(
+                                              context,
+                                            )!
+                                                .ok,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 5,
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                            );
+                          },
+                        ),
                         ListTile(
                           title: Text(
                             AppLocalizations.of(
@@ -3580,10 +3777,10 @@ class _SettingPageState extends State<SettingPage>
                               noAction: true,
                             );
 
-                            SupaBase().getUpdate().then(
-                              (Map value) async {
+                            GitHub.getLatestVersion().then(
+                              (String latestVersion) async {
                                 if (compareVersion(
-                                  value['LatestVersion'].toString(),
+                                  latestVersion,
                                   appVersion!,
                                 )) {
                                   List? abis = await Hive.box('settings')
@@ -3611,33 +3808,11 @@ class _SettingPageState extends State<SettingPage>
                                           AppLocalizations.of(context)!.update,
                                       onPressed: () {
                                         Navigator.pop(context);
-                                        if (abis!.contains('arm64-v8a')) {
-                                          launchUrl(
-                                            Uri.parse(
-                                              value['arm64-v8a'] as String,
-                                            ),
-                                            mode:
-                                                LaunchMode.externalApplication,
-                                          );
-                                        } else {
-                                          if (abis.contains('armeabi-v7a')) {
-                                            launchUrl(
-                                              Uri.parse(
-                                                value['armeabi-v7a'] as String,
-                                              ),
-                                              mode: LaunchMode
-                                                  .externalApplication,
-                                            );
-                                          } else {
-                                            launchUrl(
-                                              Uri.parse(
-                                                value['universal'] as String,
-                                              ),
-                                              mode: LaunchMode
-                                                  .externalApplication,
-                                            );
-                                          }
-                                        }
+                                        launchUrl(
+                                          Uri.parse(
+                                              'https://sumanishere.github.io/Sangeet/'),
+                                          mode: LaunchMode.externalApplication,
+                                        );
                                       },
                                     ),
                                   );

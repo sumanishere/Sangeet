@@ -5,7 +5,6 @@ import 'package:hive/hive.dart';
 import 'package:sangeet/CustomWidgets/gradient_containers.dart';
 import 'package:sangeet/Helpers/backup_restore.dart';
 import 'package:sangeet/Helpers/config.dart';
-import 'package:sangeet/Helpers/supabase.dart';
 import 'package:uuid/uuid.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -25,23 +24,7 @@ class _AuthScreenState extends State<AuthScreen> {
 
   Future _addUserData(String name) async {
     await Hive.box('settings').put('name', name.trim());
-    final DateTime now = DateTime.now();
-    final List createDate = now
-        .toUtc()
-        .add(const Duration(hours: 5, minutes: 30))
-        .toString()
-        .split('.')
-      ..removeLast()
-      ..join('.');
-
     final String userId = uuid.v1();
-    await SupaBase().createUser({
-      'id': userId,
-      'name': name,
-      'accountCreatedOn': '${createDate[0]} IST',
-      'timeZone':
-          "Zone: ${now.timeZoneName} Offset: ${now.timeZoneOffset.toString().replaceAll('.000000', '')}",
-    });
     await Hive.box('settings').put('userId', userId);
   }
 

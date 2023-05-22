@@ -110,7 +110,7 @@ class _PrefScreenState extends State<PrefScreen> {
                                             color: Colors.teal,
                                           ),
                                         ),
-                                        TextSpan(
+                                        const TextSpan(
                                           text: '!\n',
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,

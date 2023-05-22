@@ -52,7 +52,6 @@ dependencies:
   share_plus: ^6.3.0
   sliding_up_panel: ^2.0.0+1
   speech_to_text: ^6.1.1
-  supabase: ^1.1.1
   url_launcher: ^6.1.8
   uuid: ^3.0.7
   youtube_explode_dart: ^1.12.3
