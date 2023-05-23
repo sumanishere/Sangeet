@@ -48,7 +48,12 @@ class _TopChartsState extends State<TopCharts>
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: IconButton(
-                icon: const Icon(Icons.my_location_rounded),
+                icon: Icon(
+                  Icons.my_location_rounded,
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? Colors.white
+                      : Colors.black,
+                ),
                 onPressed: () async {
                   await SpotifyCountry().changeCountry(context: context);
                 },

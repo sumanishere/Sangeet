@@ -111,7 +111,6 @@ class _YouTubeState extends State<YouTube>
                   icon: const Icon(
                     Icons.table_rows_rounded,
                   ),
-                  // color: Theme.of(context).iconTheme.color,
                   onPressed: () {
                     Scaffold.of(context).openDrawer();
                   },

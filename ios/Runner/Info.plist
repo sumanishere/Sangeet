@@ -27,6 +27,10 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIBackgroundModes</key>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>The app uses speech recognition for searching music.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>The app uses microphone to activate voice search.</string>
 	<array>
 		<string>audio</string>
 	</array>

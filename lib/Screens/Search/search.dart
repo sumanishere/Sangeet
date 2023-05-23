@@ -137,7 +137,11 @@ class _SearchPageState extends State<SearchPage> {
                   autofocus: widget.autofocus,
                   hintText: AppLocalizations.of(context)!.searchText,
                   leading: IconButton(
-                    icon: const Icon(Icons.arrow_back_rounded),
+                    icon: Icon(Icons.arrow_back_rounded,
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? Colors.white
+                          : Colors.black,
+                    ),
                     onPressed: () => Navigator.pop(context),
                   ),
                   body: (fromHome!)

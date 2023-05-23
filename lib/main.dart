@@ -244,7 +244,9 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
+        statusBarColor: AppTheme.themeMode == ThemeMode.dark
+            ? Colors.black38
+            : Colors.transparent,
         systemNavigationBarColor: AppTheme.themeMode == ThemeMode.dark
             ? Colors.black38
             : Colors.white,

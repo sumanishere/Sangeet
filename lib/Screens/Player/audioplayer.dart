@@ -226,7 +226,10 @@ class _PlayScreenState extends State<PlayScreen> {
                   backgroundColor: Colors.transparent,
                   centerTitle: true,
                   leading: IconButton(
-                    icon: const Icon(Icons.expand_more_rounded),
+                    icon: const Icon(
+                      Icons.expand_circle_down_outlined,
+                      size: 31.0,
+                    ),
                     tooltip: AppLocalizations.of(context)!.back,
                     onPressed: () {
                       Navigator.pop(context);
@@ -499,8 +502,12 @@ class _PlayScreenState extends State<PlayScreen> {
                                   value: 5,
                                   child: Row(
                                     children: [
-                                      const Icon(
+                                      Icon(
                                         Icons.album_rounded,
+                                        color: Theme.of(context).brightness ==
+                                                Brightness.dark
+                                            ? Colors.white
+                                            : Colors.black,
                                       ),
                                       const SizedBox(width: 10.0),
                                       Text(
@@ -700,7 +707,7 @@ class _PlayScreenState extends State<PlayScreen> {
                                   Colors.black
                               ]
                             : [
-                                value?[0] ?? const Color(0xfff5f9ff),
+                                value?[0] ?? const Color(0xccc1f0ff),
                                 Colors.white,
                               ],
                   ),
@@ -1992,9 +1999,8 @@ class NameNControls extends StatelessWidget {
                             fadingEdgeStartFraction: 0.1,
                             startAfter: const Duration(seconds: 2),
                             style: TextStyle(
-                              fontSize: titleBoxHeight / 2.75,
+                              fontSize: titleBoxHeight / 3.5, //changed
                               fontWeight: FontWeight.bold,
-                              // color: Theme.of(context).accentColor,
                             ),
                           ),
 
@@ -2083,8 +2089,13 @@ class NameNControls extends StatelessWidget {
                                       snapshot.data ?? false;
                                   return IconButton(
                                     icon: shuffleModeEnabled
-                                        ? const Icon(
+                                        ? Icon(
                                             Icons.shuffle_rounded,
+                                            color:
+                                                Theme.of(context).brightness ==
+                                                        Brightness.dark
+                                                    ? Colors.white
+                                                    : Colors.black,
                                           )
                                         : Icon(
                                             Icons.shuffle_rounded,
@@ -2128,8 +2139,12 @@ class NameNControls extends StatelessWidget {
                                       Icons.repeat_rounded,
                                       color: Theme.of(context).disabledColor,
                                     ),
-                                    const Icon(
+                                    Icon(
                                       Icons.repeat_rounded,
+                                      color: Theme.of(context).brightness ==
+                                              Brightness.dark
+                                          ? Colors.white
+                                          : Colors.black,
                                     ),
                                     const Icon(
                                       Icons.repeat_one_rounded,

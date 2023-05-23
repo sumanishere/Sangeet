@@ -25,6 +25,7 @@ import 'package:sangeet/Screens/Settings/setting.dart';
 import 'package:sangeet/Screens/Top%20Songs/top.dart';
 import 'package:sangeet/Screens/YouTube/youtube_home.dart';
 import 'package:sangeet/Services/ext_storage_provider.dart';
+import 'package:speech_to_text/speech_to_text.dart' as stt;
 import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
@@ -737,7 +738,7 @@ class _HomePageState extends State<HomePage> {
                                                             .secondary,
                                                       ),
                                                       const SizedBox(
-                                                        width: 9.5,
+                                                        width: 10.0,
                                                       ),
                                                       Text(
                                                         AppLocalizations.of(
@@ -754,6 +755,14 @@ class _HomePageState extends State<HomePage> {
                                                           fontWeight:
                                                               FontWeight.normal,
                                                         ),
+                                                      ),
+                                                      const SizedBox(
+                                                        width: 22.0,
+                                                      ),
+                                                      const Icon(
+                                                        Icons.mic,
+                                                        color: Colors.blueGrey,
+                                                        size: 24.5,
                                                       ),
                                                     ],
                                                   ),

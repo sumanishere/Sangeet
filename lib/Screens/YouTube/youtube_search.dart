@@ -85,7 +85,12 @@ class _YouTubeSearchPageState extends State<YouTubeSearchPage> {
                   controller: _controller,
                   liveSearch: true,
                   leading: IconButton(
-                    icon: const Icon(Icons.arrow_back_rounded),
+                    icon: Icon(
+                      Icons.arrow_back_rounded,
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? Colors.white
+                          : Colors.black,
+                    ),
                     onPressed: () => Navigator.pop(context),
                   ),
                   hintText: AppLocalizations.of(context)!.searchYt,

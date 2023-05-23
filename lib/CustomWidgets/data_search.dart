@@ -41,7 +41,11 @@ class DataSearch extends SearchDelegate {
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
-      icon: const Icon(Icons.arrow_back_rounded),
+      icon: Icon(Icons.arrow_back_rounded,
+        color: Theme.of(context).brightness == Brightness.dark
+            ? Colors.white
+            : Colors.black,
+      ),
       tooltip: AppLocalizations.of(context)!.back,
       onPressed: () {
         close(context, null);
@@ -205,7 +209,12 @@ class DownloadsSearch extends SearchDelegate {
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
-      icon: const Icon(Icons.arrow_back_rounded),
+      icon: Icon(
+        Icons.arrow_back_rounded,
+        color: Theme.of(context).brightness == Brightness.dark
+            ? Colors.white
+            : Colors.black,
+      ),
       tooltip: AppLocalizations.of(context)!.back,
       onPressed: () {
         close(context, null);

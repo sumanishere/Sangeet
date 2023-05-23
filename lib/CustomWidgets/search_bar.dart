@@ -269,6 +269,7 @@ class _SearchBarState extends State<SearchBar> {
                                         suggestedList[index].toString(),
                                         overflow: TextOverflow.ellipsis,
                                       ),
+                                      trailing: const Icon(Icons.mic),
                                       onTap: () {
                                         widget.onSubmitted(
                                           suggestedList[index].toString(),
