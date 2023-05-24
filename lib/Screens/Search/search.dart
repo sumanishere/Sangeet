@@ -1,3 +1,4 @@
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -16,6 +17,7 @@ import 'package:sangeet/Screens/Common/song_list.dart';
 import 'package:sangeet/Screens/Search/albums.dart';
 import 'package:sangeet/Screens/Search/artists.dart';
 import 'package:sangeet/Services/player_service.dart';
+import 'package:speech_to_text/speech_to_text.dart' as stt;
 
 class SearchPage extends StatefulWidget {
   final String query;
@@ -35,6 +37,8 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   String query = '';
   bool status = false;
+  bool _isListening = false;
+  late stt.SpeechToText _speech;
   Map searchedData = {};
   Map position = {};
   List sortedKeys = [];
@@ -58,6 +62,7 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   void initState() {
+    _speech = stt.SpeechToText();
     controller.text = widget.query;
     super.initState();
   }
@@ -137,7 +142,8 @@ class _SearchPageState extends State<SearchPage> {
                   autofocus: widget.autofocus,
                   hintText: AppLocalizations.of(context)!.searchText,
                   leading: IconButton(
-                    icon: Icon(Icons.arrow_back_rounded,
+                    icon: Icon(
+                      Icons.arrow_back_rounded,
                       color: Theme.of(context).brightness == Brightness.dark
                           ? Colors.white
                           : Colors.black,
@@ -703,5 +709,23 @@ class _SearchPageState extends State<SearchPage> {
         ),
       ),
     );
+  }
+
+  // ignore: avoid_void_async
+  void _listen() async {
+    if (!_isListening) {
+      bool available = await _speech.initialize();
+      if (available) {
+        setState(() => _isListening = true);
+        _speech.listen(
+          onResult: (val) => setState(() {
+            query = val.recognizedWords;
+          }),
+        );
+      }
+    } else {
+      setState(() => _isListening = false);
+      _speech.stop();
+    }
   }
 }

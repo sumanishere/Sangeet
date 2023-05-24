@@ -25,7 +25,6 @@ import 'package:sangeet/Screens/Settings/setting.dart';
 import 'package:sangeet/Screens/Top%20Songs/top.dart';
 import 'package:sangeet/Screens/YouTube/youtube_home.dart';
 import 'package:sangeet/Services/ext_storage_provider.dart';
-import 'package:speech_to_text/speech_to_text.dart' as stt;
 import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
@@ -37,6 +36,7 @@ class _HomePageState extends State<HomePage> {
   final ValueNotifier<int> _selectedIndex = ValueNotifier<int>(0);
   bool checked = false;
   String? appVersion;
+
   String name =
       Hive.box('settings').get('name', defaultValue: 'Guest') as String;
   bool checkUpdate =
@@ -116,17 +116,6 @@ class _HomePageState extends State<HomePage> {
               version,
               appVersion!,
             )) {
-              // List? abis =
-              //     await Hive.box('settings').get('supportedAbis') as List?;
-
-              // if (abis == null) {
-              //   final DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-              //   final AndroidDeviceInfo androidDeviceInfo =
-              //       await deviceInfo.androidInfo;
-              //   abis = androidDeviceInfo.supportedAbis;
-              //   await Hive.box('settings').put('supportedAbis', abis);
-              // }
-
               ShowSnackBar().showSnackBar(
                 context,
                 AppLocalizations.of(context)!.updateAvailable,
@@ -708,7 +697,6 @@ class _HomePageState extends State<HomePage> {
                                                   ),
                                                   padding:
                                                       const EdgeInsets.all(2.0),
-                                                  // margin: EdgeInsets.zero,
                                                   decoration: BoxDecoration(
                                                     borderRadius:
                                                         BorderRadius.circular(
@@ -722,14 +710,13 @@ class _HomePageState extends State<HomePage> {
                                                         blurRadius: 5.0,
                                                         offset:
                                                             Offset(1.5, 1.5),
-                                                        // shadow direction: bottom right
                                                       )
                                                     ],
                                                   ),
                                                   child: Row(
                                                     children: [
                                                       const SizedBox(
-                                                        width: 9.5,
+                                                        width: 8.0,
                                                       ),
                                                       Icon(
                                                         CupertinoIcons.search,
@@ -738,7 +725,7 @@ class _HomePageState extends State<HomePage> {
                                                             .secondary,
                                                       ),
                                                       const SizedBox(
-                                                        width: 10.0,
+                                                        width: 8.0,
                                                       ),
                                                       Text(
                                                         AppLocalizations.of(
@@ -746,7 +733,7 @@ class _HomePageState extends State<HomePage> {
                                                         )!
                                                             .searchText,
                                                         style: TextStyle(
-                                                          fontSize: 16.0,
+                                                          fontSize: 15.0,
                                                           color:
                                                               Theme.of(context)
                                                                   .textTheme
@@ -757,12 +744,7 @@ class _HomePageState extends State<HomePage> {
                                                         ),
                                                       ),
                                                       const SizedBox(
-                                                        width: 22.0,
-                                                      ),
-                                                      const Icon(
-                                                        Icons.mic,
-                                                        color: Colors.blueGrey,
-                                                        size: 24.5,
+                                                        width: 11.0,
                                                       ),
                                                     ],
                                                   ),
