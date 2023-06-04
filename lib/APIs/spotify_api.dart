@@ -65,6 +65,11 @@ class SpotifyApi {
           result['refresh_token'].toString(),
           result['expires_in'].toString(),
         ];
+      } else {
+        Logger.root.severe(
+          'Error in getAccessToken, called: $path, returned: ${response.statusCode}',
+          response.body,
+        );
       }
     } catch (e) {
       Logger.root.severe('Error in getting spotify access token: $e');
@@ -88,6 +93,11 @@ class SpotifyApi {
         final result = jsonDecode(response.body);
         final List playlists = result['items'] as List;
         return playlists;
+      } else {
+        Logger.root.severe(
+          'Error in getUserPlaylists, called: $path, returned: ${response.statusCode}',
+          response.body,
+        );
       }
     } catch (e) {
       Logger.root.severe('Error in getting spotify user playlists: $e');
@@ -145,9 +155,42 @@ class SpotifyApi {
         final List tracks = result['items'] as List;
         final int total = result['total'] as int;
         return {'tracks': tracks, 'total': total};
+      } else {
+        Logger.root.severe(
+          'Error in getHundredTracksOfPlaylist, called: $path, returned: ${response.statusCode}',
+          response.body,
+        );
       }
     } catch (e) {
       Logger.root.severe('Error in getting spotify playlist tracks: $e');
+    }
+    return {};
+  }
+
+  Future<Map> searchTrack({
+    required String accessToken,
+    required String query,
+    int limit = 10,
+    String type = 'track',
+  }) async {
+    final Uri path = Uri.parse(
+      '$spotifyApiBaseUrl/search?q=$query&type=$type&limit=$limit',
+    );
+    final response = await get(
+      path,
+      headers: {
+        'Authorization': 'Bearer $accessToken',
+        'Accept': 'application/json'
+      },
+    );
+    if (response.statusCode == 200) {
+      final result = jsonDecode(response.body) as Map;
+      return result;
+    } else {
+      Logger.root.severe(
+        'Error in searchTrack, called: $path, returned: ${response.statusCode}',
+        response.body,
+      );
     }
     return {};
   }
@@ -167,6 +210,11 @@ class SpotifyApi {
     if (response.statusCode == 200) {
       final result = jsonDecode(response.body) as Map;
       return result;
+    } else {
+      Logger.root.severe(
+        'Error in getTrackDetails, called: $path, returned: ${response.statusCode}',
+        response.body,
+      );
     }
     return {};
   }
@@ -186,7 +234,7 @@ class SpotifyApi {
       final List<Map> songsData = [];
       if (response.statusCode == 200) {
         final result = jsonDecode(response.body);
-        await for (final element in result['playlists']['items']) {
+        await for (final element in result['playlists']['items'] as Stream) {
           songsData.add({
             'name': element['name'],
             'id': element['id'],
@@ -199,6 +247,11 @@ class SpotifyApi {
             ),
           });
         }
+      } else {
+        Logger.root.severe(
+          'Error in getFeaturedPlaylists, called: $path, returned: ${response.statusCode}',
+          response.body,
+        );
       }
       return songsData;
     } catch (e) {

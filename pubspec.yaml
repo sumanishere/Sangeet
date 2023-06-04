@@ -8,7 +8,7 @@ version: 1.0.0
 
 environment:
   sdk: ">=2.18.0 <3.0.0"
-
+  flutter: ">=3.0.0"
 dependencies:
   app_links: 2.2.2
   audio_service: ^0.18.9

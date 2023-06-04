@@ -27,6 +27,9 @@
         android:label="Sangeet"
         android:usesCleartextTraffic="true"
         android:requestLegacyExternalStorage="true">
+        <meta-data
+            android:name="com.google.android.gms.car.application"
+            android:resource="@xml/automotive_app_desc" />
         <receiver
             android:name=".SangeetMusicWidget"
             android:exported="false">
@@ -98,8 +101,10 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.DEFAULT" />
 
+                <data android:scheme="http" />
                 <data android:scheme="https" />
                 <data android:host="jiosaavn.com" />
+                <data android:host="www.jiosaavn.com" />
             </intent-filter>
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
